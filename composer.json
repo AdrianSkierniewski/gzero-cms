@@ -1,0 +1,28 @@
+{
+    "name": "gzero/gzero-cms",
+    "description": "",
+    "authors": [
+        {
+            "name": "Adrian Skierniewski",
+            "email": "adrian.skierniewski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.1.*",
+        "robclancy/presenter": "1.2.0",
+        "gzero/eloquent-base-model": "v0.1",
+        "gzero/eloquent-tree": "~0.1",
+        "barryvdh/laravel-twigbridge": "dev-master",
+        "bigecko/laravel-theme": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-4": {
+            "Gzero\\": "src/Gzero"
+        }
+    },
+    "minimum-stability": "stable"
+}

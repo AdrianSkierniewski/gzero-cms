@@ -1,0 +1,46 @@
+<?php namespace Gzero\Models\Upload;
+
+use Gzero\Models\Translation;
+
+/**
+ * This file is part of the GZERO CMS package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Class UploadTranslation
+ *
+ * @package    Gzero\Models\Upload
+ * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
+ * @copyright  Copyright (c) 2014, Adrian Skierniewski
+ */
+class UploadTranslation extends Translation {
+
+    protected $fillable = array(
+        'name'
+    );
+
+    public static $rules = array();
+
+    /**
+     * Represents upload relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function upload()
+    {
+        return $this->belongsTo('Gzero\Models\Upload\Upload');
+    }
+
+    /**
+     * Represents lang relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lang()
+    {
+        return $this->belongsTo('Gzero\Models\Lang');
+    }
+
+
+}
