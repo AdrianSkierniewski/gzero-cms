@@ -1,0 +1,11 @@
+{% extends "layout.twig" %}
+ {% block metaTitle %}
+     Home
+ {% endblock %}
+{% block content %}
+    <h1>Aktualności</h1>
+    <hr>
+    {% for item in news %}
+        {% include "partials/itemList.twig" %}
+    {% endfor %}
+{% endblock %}

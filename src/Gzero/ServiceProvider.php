@@ -1,5 +1,6 @@
 <?php namespace Gzero;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider as SP;
 
@@ -34,6 +35,11 @@ class ServiceProvider extends SP {
      */
     public function register()
     {
+        AliasLoader::getInstance()->alias('Eloquent', 'Gzero\EloquentBaseModel\Model\Base'); // Override Eloquent Model
+
+        App::register('Bigecko\LaravelTheme\LaravelThemeServiceProvider');
+        App::register('Robbo\Presenter\PresenterServiceProvider');
+        App::register('Barryvdh\TwigBridge\ServiceProvider');
         /**
          * Register all Gzero service providers
          */

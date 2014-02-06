@@ -1,0 +1,4 @@
+Block menu id: {{ block.id }}
+{% if block.menu is defined %}
+    {{ block.menu()|raw }}
+{% endif %}

@@ -19,15 +19,17 @@
     },
     "require-dev": {
         "fzaninotto/faker": "v1.3.0",
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+        "orchestra/testbench": "2.1.*"
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/migrations",
+            "tests/TestCase.php"
         ],
         "psr-4": {
             "Gzero\\": "src/Gzero"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

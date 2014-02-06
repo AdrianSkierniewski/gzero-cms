@@ -1,0 +1,10 @@
+{% extends "content.twig" %}
+{% block metaTitle %}
+    Category
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    {% for item in children %}
+        {% include "partials/itemList.twig" %}
+    {% endfor %}
+{% endblock %}

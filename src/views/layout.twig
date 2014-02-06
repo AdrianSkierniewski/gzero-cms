@@ -1,0 +1,93 @@
+{% spaceless %}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block metaTitle %}
+                Laravel PHP Framework
+            {% endblock %}
+        </title>
+        <style>
+            @import url(//fonts.googleapis.com/css?family=Lato:700);
+
+            body {
+                background  : #eee;
+                margin      : 0;
+                font-family : 'Lato', sans-serif;
+                color       : #999;
+                padding     : 30px 0;
+            }
+
+            .container {
+                width    : 978px;
+                overflow : hidden;
+                margin   : 0 auto;
+            }
+
+            #main-container {
+                background : #fff;
+                border     : 1px solid #efefef;
+                margin     : 10px auto;
+                padding    : 15px;
+            }
+
+            #sidebar-right,
+            #sidebar-left {
+                float : left;
+                width : 222px;
+            }
+
+            #content {
+                float        : left;
+                margin       : 0 30px;
+                width        : 452px;
+                border       : 1px solid #eee;
+                border-width : 0 1px;
+                padding      : 0 10px;
+            }
+
+            a, a:visited {
+                text-decoration : none;
+            }
+
+            h1 {
+                font-size : 32px;
+                margin    : 16px 0 0 0;
+            }
+        </style>
+    </head>
+    <body>
+    <header id="header" class="container">
+        Header:<br/>
+        {% for block in regions.get('header') %}
+            {{ block|raw }}
+        {% endfor %}
+    </header>
+    <section id="main-container" class="container">
+        <aside id="sidebar-left" class="sidebar">
+            Sidebar left:<br/>
+            {% for block in regions.get('sidebar-left') %}
+                {{ block|raw }}
+            {% endfor %}
+        </aside>
+        <section id="content">
+            {% block content %}
+            {% endblock %}
+        </section>
+        <aside id="sidebar-right" class="sidebar">
+            Sidebar left:<br/>
+            {% for block in regions.get('sidebar-right') %}
+                {{ block|raw }}
+            {% endfor %}
+        </aside>
+    </section>
+    <footer id="footer" class="container">
+        Footer:<br/>
+        {% for block in regions.get('footer') %}
+            {{ block|raw }}
+        {% endfor %}
+    </footer>
+    </body>
+    </html>
+{% endspaceless %}
