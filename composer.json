@@ -9,12 +9,17 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.1.*",
+        "laravel/framework": "4.1.*",
         "robclancy/presenter": "1.2.0",
         "gzero/eloquent-base-model": "v0.1",
         "gzero/eloquent-tree": "~0.1",
         "barryvdh/laravel-twigbridge": "dev-master",
         "bigecko/laravel-theme": "dev-master"
+
+    },
+    "require-dev": {
+        "fzaninotto/faker": "v1.3.0",
+        "mockery/mockery": "dev-master"
     },
     "autoload": {
         "classmap": [
