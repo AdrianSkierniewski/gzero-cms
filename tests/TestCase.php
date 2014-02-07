@@ -5,6 +5,8 @@ abstract class TestCase extends Orchestra\Testbench\TestCase {
     public function setUp()
     {
         parent::setUp();
+        Config::set('cache.driver', 'array'); // Override view path for tests
+        Config::set('view.paths', [__DIR__ . '/../src/views']); // Override view path for tests
         App::register('Gzero\ServiceProvider');
     }
 //    public function setUp()

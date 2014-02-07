@@ -19,12 +19,14 @@ class BlockHandlerTest extends TestCase {
     public function is_block_load_to_region()
     {
         $block          = (object) [
+            'id'           => 1,
             'is_cacheable' => NULL,
             'region'       => 'header|footer',
             'view'         => NULL,
             'type'         => (object) ['name' => 'menu']
         ];
         $block2         = clone $block;
+        $block2->id     = 2;
         $block2->region = 'footer';
         $blockType      = Mockery::mock('Foo')->shouldReceive('render')->andReturn('TestRender')->getMock();
         $app            = Mockery::mock('Illuminate\Foundation\Application')
@@ -49,8 +51,9 @@ class BlockHandlerTest extends TestCase {
         $blockHandler   = new \Gzero\BlockHandler($blockRepo, new Illuminate\Cache\Repository(Cache::getStore()), $app);
         $blockHandler->loadAllActive('url', new \Gzero\Models\Lang());
         $regions = \View::shared('regions');
-        $this->assertEquals($regions->get('header')->first(), $block);
-        $this->assertEquals($regions->get('footer')->first(), $block);
-        $this->assertEquals($regions->get('footer')->last(), $block2);
+        $this->assertEquals($regions->get('header')->first()->view, 'TestRender'); // load()->render() check
+        $this->assertEquals($regions->get('header')->first()->id, $block->id);
+        $this->assertEquals($regions->get('footer')->first()->id, $block->id);
+        $this->assertEquals($regions->get('footer')->last()->id, $block2->id);
     }
 }
