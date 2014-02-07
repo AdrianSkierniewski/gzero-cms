@@ -39,12 +39,12 @@ class BlockHandler {
         $blocks  = $this->cacheAll($lang);
         foreach ($blocks as $block) {
             if ($this->checkVisibility($block)) {
+                if (!$block->is_cacheable) { // Build not cached blocks
+                    $this->build($block, $lang);
+                }
                 foreach (explode('|', $block->region) as $region) {
                     if (empty($regions[$region])) {
                         $regions[$region] = new Collection();
-                    }
-                    if (!$block->is_cacheable) { // Build not cached blocks
-                        $this->build($block, $lang);
                     }
                     $regions[$region]->add($block);
                 }
