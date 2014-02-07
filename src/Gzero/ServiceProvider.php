@@ -1,8 +1,10 @@
 <?php namespace Gzero;
 
+use Config;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider as SP;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -25,7 +27,10 @@ class ServiceProvider extends SP {
      */
     public function boot()
     {
-        $this->package('gzero/gzero-cms');
+        $this->package('gzero/gzero-cms', NULL, __DIR__ . '/../');
+        $this->registerHelpers();
+        $this->registerFilters();
+        $this->detectLanguage();
     }
 
     /**
@@ -58,5 +63,39 @@ class ServiceProvider extends SP {
         $this->app->bind('block_type:basic', 'Gzero\Handlers\Block\Basic');
         $this->app->bind('block_type:menu', 'Gzero\Handlers\Block\Menu');
         $this->app->bind('block_type:slider', 'Gzero\Handlers\Block\Slider');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Multi language detection
+    |--------------------------------------------------------------------------
+    |
+    | Next we will try to detect language from uri
+    |
+    */
+    private function detectLanguage()
+    {
+        if (Config::get('gzero-cms::multilang.enabled')) {
+            if (Config::get('gzero-cms::multilang.subdomain')) {
+                $locale = preg_replace('/\..+$/', '', Request::getHost());
+            } else {
+                $locale = \Request::segment(1);
+            }
+            $languages = array('pl', 'en');
+            if (in_array($locale, $languages, TRUE)) {
+                App::setLocale($locale);
+                Config::set('gzero-cms::multilang.detected', TRUE);
+            }
+        }
+    }
+
+    private function registerFilters()
+    {
+        require __DIR__ . '/../filters.php';
+    }
+
+    private function registerHelpers()
+    {
+        require_once __DIR__ . '/../helpers.php';
     }
 }
