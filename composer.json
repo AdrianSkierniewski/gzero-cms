@@ -1,6 +1,8 @@
 {
     "name": "gzero/gzero-cms",
-    "description": "",
+    "description": "Gzero CMS",
+    "keywords": ["framework", "laravel", "cms"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Adrian Skierniewski",

@@ -1,12 +1,17 @@
 language: php
 
 php: 
-  - 5.3
   - 5.4
   - 5.5
 
 before_script:
   - curl -s http://getcomposer.org/installer | php
+  - composer require satooshi/php-coveralls:dev-master --dev --no-progress --prefer-source
   - php composer.phar install --dev
 
-script: phpunit
+script:
+ - mkdir -p build/logs
+ - phpunit --coverage-clover build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls -v
