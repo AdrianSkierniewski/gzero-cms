@@ -27,7 +27,7 @@ class ServiceProvider extends SP {
      */
     public function boot()
     {
-        $this->package('gzero/gzero-cms', NULL, __DIR__ . '/../');
+        $this->package('gzero/gzero-cms', 'gzero/gzero-cms', __DIR__ . '/../');
         $this->registerHelpers();
         $this->registerFilters();
         $this->detectLanguage();
@@ -45,6 +45,7 @@ class ServiceProvider extends SP {
         App::register('Bigecko\LaravelTheme\LaravelThemeServiceProvider');
         App::register('Robbo\Presenter\PresenterServiceProvider');
         App::register('Barryvdh\TwigBridge\ServiceProvider');
+        App::register('Gzero\Admin\ServiceProvider');
         /**
          * Register all Gzero service providers
          */
@@ -75,7 +76,7 @@ class ServiceProvider extends SP {
     */
     private function detectLanguage()
     {
-        if (Config::get('gzero-cms::multilang.enabled')) {
+        if (\Request::segment(1) != 'admin' and Config::get('gzero-cms::multilang.enabled')) {
             if (Config::get('gzero-cms::multilang.subdomain')) {
                 $locale = preg_replace('/\..+$/', '', Request::getHost());
             } else {
