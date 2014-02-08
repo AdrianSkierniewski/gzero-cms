@@ -27,7 +27,7 @@ class ServiceProvider extends SP {
      */
     public function boot()
     {
-        $this->package('gzero/gzero-cms', 'gzero/gzero-cms', __DIR__ . '/../');
+        $this->package('gzero/gzero-cms', NULL, __DIR__ . '/../');
         $this->registerHelpers();
         $this->registerFilters();
         $this->detectLanguage();
