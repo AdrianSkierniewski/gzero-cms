@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": "4.1.*",
+        "laravel/framework": "4.1.21",
         "robclancy/presenter": "1.2.0",
         "gzero/eloquent-base-model": "v0.1",
         "gzero/eloquent-tree": "~0.1",
