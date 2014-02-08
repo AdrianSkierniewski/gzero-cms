@@ -16,8 +16,9 @@
         "gzero/eloquent-base-model": "v0.1",
         "gzero/eloquent-tree": "~0.1",
         "barryvdh/laravel-twigbridge": "dev-master",
-        "bigecko/laravel-theme": "dev-master"
-
+        "bigecko/laravel-theme": "dev-master",
+        "gzero/gzero-auth": "dev-master",
+        "gzero/gzero-admin": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "v1.3.0",
