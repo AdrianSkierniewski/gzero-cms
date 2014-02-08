@@ -20,6 +20,14 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ServiceProvider extends SP {
 
+    protected $providers = [
+        'Bigecko\LaravelTheme\LaravelThemeServiceProvider',
+        'Robbo\Presenter\PresenterServiceProvider',
+        'Barryvdh\TwigBridge\ServiceProvider',
+        'Gzero\Repositories\RepositoryServiceProvider',
+        'Gzero\Admin\ServiceProvider'
+    ];
+
     /**
      * Bootstrap the application events.
      *
@@ -42,17 +50,7 @@ class ServiceProvider extends SP {
     {
         AliasLoader::getInstance()->alias('Eloquent', 'Gzero\EloquentBaseModel\Model\Base'); // Override Eloquent Model
 
-        App::register('Bigecko\LaravelTheme\LaravelThemeServiceProvider');
-        App::register('Robbo\Presenter\PresenterServiceProvider');
-        App::register('Barryvdh\TwigBridge\ServiceProvider');
-        App::register('Gzero\Admin\ServiceProvider');
-        /**
-         * Register all Gzero service providers
-         */
-        App::register('Gzero\Repositories\RepositoryServiceProvider');
-        if (App::environment() == 'dev') { // Profiler only on dev mode
-            App::register('Barryvdh\Debugbar\ServiceProvider'); // Must be in another SP to work
-        }
+        $this->registerAdditionalProviders();
         /**
          * Register default content types
          */
@@ -66,15 +64,10 @@ class ServiceProvider extends SP {
         $this->app->bind('block_type:slider', 'Gzero\Handlers\Block\Slider');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Multi language detection
-    |--------------------------------------------------------------------------
-    |
-    | Next we will try to detect language from uri
-    |
-    */
-    private function detectLanguage()
+    /**
+     * Trying to detect language from uri
+     */
+    protected function detectLanguage()
     {
         if (\Request::segment(1) != 'admin' and Config::get('gzero-cms::multilang.enabled')) {
             if (Config::get('gzero-cms::multilang.subdomain')) {
@@ -90,12 +83,28 @@ class ServiceProvider extends SP {
         }
     }
 
-    private function registerFilters()
+    /**
+     * Register additional providers to system
+     */
+    protected function registerAdditionalProviders()
+    {
+        foreach ($this->providers as $provider) {
+            App::register($provider);
+        }
+    }
+
+    /**
+     * Add additional file to store filers
+     */
+    protected function registerFilters()
     {
         require __DIR__ . '/../filters.php';
     }
 
-    private function registerHelpers()
+    /**
+     * Add additional file to store helpers
+     */
+    protected function registerHelpers()
     {
         require_once __DIR__ . '/../helpers.php';
     }
