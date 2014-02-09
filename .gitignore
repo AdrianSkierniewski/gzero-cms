@@ -1,4 +1,5 @@
-/vendor
+node_modules/*
+vendor/*
 composer.phar
 .DS_Store
 Thumbs.db
@@ -6,4 +7,3 @@ Thumbs.db
 _ide_helper.php
 .vagrant
 .sass-cache
-
