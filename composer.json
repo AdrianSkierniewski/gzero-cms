@@ -17,7 +17,7 @@
         "gzero/eloquent-tree": "~0.1",
         "barryvdh/laravel-twigbridge": "dev-master",
         "bigecko/laravel-theme": "dev-master",
-        "gzero/gzero-auth": "dev-master",
+        "gzero/gzero-user-panel": "dev-master",
         "gzero/gzero-admin": "dev-master"
     },
     "require-dev": {
