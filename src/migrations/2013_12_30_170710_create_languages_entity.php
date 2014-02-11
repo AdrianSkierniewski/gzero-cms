@@ -20,7 +20,6 @@ class CreateLanguagesEntity extends Migration {
                 $table->string('i18n');
                 $table->boolean('is_active');
                 $table->boolean('is_default');
-                $table->timestamps();
             }
         );
 

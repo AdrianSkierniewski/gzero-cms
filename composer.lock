@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bab37ca13ba327d1b42dd73952941529",
+    "hash": "c4192cfacb126911e9fff32b953d457d",
     "packages": [
         {
             "name": "barryvdh/laravel-twigbridge",
@@ -11,24 +11,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-twigbridge.git",
-                "reference": "dc962ca2bcf7fc3e6e7a7dcda87c162a1c4936e2"
+                "reference": "979f0caadb9d775458a0da38a21f85047e09af14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-twigbridge/zipball/dc962ca2bcf7fc3e6e7a7dcda87c162a1c4936e2",
-                "reference": "dc962ca2bcf7fc3e6e7a7dcda87c162a1c4936e2",
+                "url": "https://api.github.com/repos/barryvdh/laravel-twigbridge/zipball/979f0caadb9d775458a0da38a21f85047e09af14",
+                "reference": "979f0caadb9d775458a0da38a21f85047e09af14",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "4.x",
+                "illuminate/view": "4.x",
                 "php": ">=5.3.0",
                 "symfony/twig-bridge": ">=2.3",
                 "twig/twig": "~1.12"
             },
+            "require-dev": {
+                "illuminate/foundation": "4.x",
+                "mockery/mockery": "~0.7.2",
+                "phpunit/phpunit": "~3.7.0"
+            },
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Barryvdh\\TwigBridge": "src/"
+                    "Barryvdh\\TwigBridge": "src/",
+                    "Barryvdh\\TwigBridge\\Tests": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -49,7 +56,7 @@
                 "twigbridge",
                 "views"
             ],
-            "time": "2014-02-07 10:50:14"
+            "time": "2014-02-10 18:45:19"
         },
         {
             "name": "bigecko/laravel-theme",
@@ -318,15 +325,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrupaZero/gzero-admin.git",
-                "reference": "c41e5010e5d2fa02b5cc37dd9289e9e556305a43"
+                "reference": "34336c6f0279f00c7e77cbde889f8ac4b3a93bfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrupaZero/gzero-admin/zipball/c41e5010e5d2fa02b5cc37dd9289e9e556305a43",
-                "reference": "c41e5010e5d2fa02b5cc37dd9289e9e556305a43",
+                "url": "https://api.github.com/repos/GrupaZero/gzero-admin/zipball/34336c6f0279f00c7e77cbde889f8ac4b3a93bfe",
+                "reference": "34336c6f0279f00c7e77cbde889f8ac4b3a93bfe",
                 "shasum": ""
             },
             "require": {
+                "illuminate/support": "4.1.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
                 "gzero/gzero-cms": "dev-master"
             },
             "type": "library",
@@ -354,7 +365,7 @@
                 "admin panel",
                 "laravel"
             ],
-            "time": "2014-02-08 12:55:09"
+            "time": "2014-02-08 20:49:20"
         },
         {
             "name": "gzero/gzero-auth",
@@ -362,12 +373,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrupaZero/gzero-auth.git",
-                "reference": "a917d8f7ab362867e04001049d7a2389caa3140c"
+                "reference": "d24e92dc9cbf1780cbd931181986239dc92064dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrupaZero/gzero-auth/zipball/a917d8f7ab362867e04001049d7a2389caa3140c",
-                "reference": "a917d8f7ab362867e04001049d7a2389caa3140c",
+                "url": "https://api.github.com/repos/GrupaZero/gzero-auth/zipball/d24e92dc9cbf1780cbd931181986239dc92064dd",
+                "reference": "d24e92dc9cbf1780cbd931181986239dc92064dd",
                 "shasum": ""
             },
             "require": {
@@ -402,7 +413,54 @@
                 "auth",
                 "laravel"
             ],
-            "time": "2014-02-08 11:05:14"
+            "time": "2014-02-08 20:53:37"
+        },
+        {
+            "name": "gzero/gzero-user-panel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrupaZero/gzero-user-panel.git",
+                "reference": "9f8e913e6ba01415abd5c3bfda8e246836782cfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrupaZero/gzero-user-panel/zipball/9f8e913e6ba01415abd5c3bfda8e246836782cfd",
+                "reference": "9f8e913e6ba01415abd5c3bfda8e246836782cfd",
+                "shasum": ""
+            },
+            "require": {
+                "gzero/gzero-auth": "dev-master",
+                "illuminate/support": "4.1.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+
+                ],
+                "psr-4": {
+                    "Gzero\\": "src/Gzero"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adrian Skierniewski",
+                    "email": "adrian.skierniewski@gmail.com",
+                    "homepage": "https://github.com/AdrianSkierniewski"
+                }
+            ],
+            "description": "Gzero User Panel",
+            "keywords": [
+                "cms",
+                "laravel",
+                "user panel"
+            ],
+            "time": "2014-02-10 12:12:58"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2051,12 +2109,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "5fd4db64de8398dedf5fcde3ec9c0dfdc910c81b"
+                "reference": "cea2143465149c8ea4c29b227b2958989c5696d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/5fd4db64de8398dedf5fcde3ec9c0dfdc910c81b",
-                "reference": "5fd4db64de8398dedf5fcde3ec9c0dfdc910c81b",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/cea2143465149c8ea4c29b227b2958989c5696d6",
+                "reference": "cea2143465149c8ea4c29b227b2958989c5696d6",
                 "shasum": ""
             },
             "require": {
@@ -2080,11 +2138,19 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher2",
-                    "email": "armin.ronacher@active-4.com"
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -2092,7 +2158,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-01-31 15:13:11"
+            "time": "2014-02-10 07:40:03"
         }
     ],
     "packages-dev": [
@@ -2148,12 +2214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "a060e069b4f46159906296d25ae80c6b0fec8daf"
+                "reference": "5414561da33f0541af447a76cda47424e82f971d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/a060e069b4f46159906296d25ae80c6b0fec8daf",
-                "reference": "a060e069b4f46159906296d25ae80c6b0fec8daf",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/5414561da33f0541af447a76cda47424e82f971d",
+                "reference": "5414561da33f0541af447a76cda47424e82f971d",
                 "shasum": ""
             },
             "require": {
@@ -2205,7 +2271,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-02-08 11:17:53"
+            "time": "2014-02-09 11:17:20"
         },
         {
             "name": "orchestra/testbench",
@@ -2262,7 +2328,7 @@
     "stability-flags": {
         "barryvdh/laravel-twigbridge": 20,
         "bigecko/laravel-theme": 20,
-        "gzero/gzero-auth": 20,
+        "gzero/gzero-user-panel": 20,
         "gzero/gzero-admin": 20,
         "mockery/mockery": 20
     },
