@@ -49,4 +49,24 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
         return $this->email;
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany('Gzero\Models\Role');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('Gzero\Models\Permission');
+    }
+
+    public function hasRole($key)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->name === $key) {
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
 }
