@@ -15,6 +15,7 @@
         "robclancy/presenter": "1.2.0",
         "gzero/eloquent-base-model": "v0.1",
         "gzero/eloquent-tree": "~0.1",
+        "machuga/authority-l4": "2.1.0",
         "barryvdh/laravel-twigbridge": "dev-master",
         "bigecko/laravel-theme": "dev-master",
         "gzero/gzero-user-panel": "dev-master",
