@@ -39,7 +39,7 @@ class CreateUsersEntity extends Migration {
         Schema::table(
             'permissions',
             function (Blueprint $table) {
-                $table->integer('user_id')->unsigned()->after('id');
+                $table->integer('user_id')->nullable()->unsigned()->after('id');
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             }
         );
