@@ -27,6 +27,31 @@ class CreateUsersEntity extends Migration {
             }
         );
 
+        // FK for machuga/authority-l4
+
+        Schema::table(
+            'permissions',
+            function (Blueprint $table) {
+                $table->dropColumn('user_id');
+            }
+        );
+
+        Schema::table(
+            'permissions',
+            function (Blueprint $table) {
+                $table->integer('user_id')->unsigned()->after('id');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            }
+        );
+
+        Schema::table(
+            'role_user',
+            function (Blueprint $table) {
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+                $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
+            }
+        );
+
     }
 
     /**
@@ -36,6 +61,19 @@ class CreateUsersEntity extends Migration {
      */
     public function down()
     {
+        Schema::table(
+            'permissions',
+            function (Blueprint $table) {
+                $table->dropForeign('permissions_user_id_foreign');
+            }
+        );
+        Schema::table(
+            'role_user',
+            function (Blueprint $table) {
+                $table->dropForeign('role_user_user_id_foreign');
+                $table->dropForeign('role_user_role_id_foreign');
+            }
+        );
         Schema::drop('users');
     }
 
