@@ -29,7 +29,6 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/seeds",
             "tests/TestCase.php"
         ],
         "psr-4": {
