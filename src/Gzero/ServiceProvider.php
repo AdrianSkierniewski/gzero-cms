@@ -25,6 +25,7 @@ class ServiceProvider extends SP {
         'Robbo\Presenter\PresenterServiceProvider',
         'Barryvdh\TwigBridge\ServiceProvider',
         'Gzero\Repositories\RepositoryServiceProvider',
+        'Gzero\Api\ServiceProvider',
         'Gzero\UserPanel\ServiceProvider',
         'Gzero\Admin\ServiceProvider'
     ];

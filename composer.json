@@ -19,6 +19,7 @@
         "barryvdh/laravel-twigbridge": "dev-master",
         "bigecko/laravel-theme": "dev-master",
         "gzero/gzero-user-panel": "dev-master",
+        "gzero/gzero-api": "dev-master",
         "gzero/gzero-admin": "dev-master"
     },
     "require-dev": {

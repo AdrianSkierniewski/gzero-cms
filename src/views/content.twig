@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ content.title() }}</h1>
     <figure>
-        {{ HTML.image(content.thumb(), null, {'height': '200px'})|raw }}
+        {{ html_image(content.thumb(), null, {'height': '200px'})|raw }}
     </figure>
     <p class="body">{{ content.body() }}</p>
 {% endblock %}
