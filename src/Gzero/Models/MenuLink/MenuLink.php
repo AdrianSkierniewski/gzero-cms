@@ -1,6 +1,6 @@
 <?php namespace Gzero\Models\MenuLink;
 
-use Gzero\Models\TranslatableInterface;
+use Gzero\Models\Translatable;
 use Gzero\Models\TranslatableTrait;
 
 /**
@@ -15,7 +15,7 @@ use Gzero\Models\TranslatableTrait;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class MenuLink extends \Gzero\EloquentTree\Model\Tree implements TranslatableInterface {
+class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
 
     use TranslatableTrait;
 

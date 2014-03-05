@@ -49,25 +49,14 @@ interface ContentRepository extends BaseRepository, TreeRepository {
     public function onlyPublic();
 
     /**
-     * Lazy load translations
-     *
-     * @param Content|Collection $content Content model
-     * @param Lang               $lang    Lang model
-     *
-     * @return mixed
-     */
-    public function loadTranslations($content, Lang $lang = NULL);
-
-    /**
      * Lazy load uploads
      *
      * @param Content|Collection $content Content model
-     * @param Lang               $lang    Lang model
      * @param UploadType|NULL    $type    UploadType model
      *
      * @return mixed
      */
-    public function loadUploads($content, Lang $lang, UploadType $type = NULL);
+    public function loadUploads($content, UploadType $type = NULL);
 
     /**
      * Lazy load thumb
@@ -82,19 +71,17 @@ interface ContentRepository extends BaseRepository, TreeRepository {
      * Lazy load tags
      *
      * @param Content|Collection $content Content model
-     * @param Lang               $lang    Lang model
      *
      * @return mixed
      */
-    public function loadTags($content, Lang $lang);
+    public function loadTags($content);
 
     /**
      * @param Content|Collection $content Content model
-     * @param Lang               $lang    Lang model
      *
      * @return mixed
      */
-    public function loadMenuLink($content, Lang $lang);
+    public function loadMenuLink($content);
 
 
 }

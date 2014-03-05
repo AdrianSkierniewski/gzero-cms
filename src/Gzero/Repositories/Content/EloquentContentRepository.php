@@ -14,7 +14,7 @@ use Gzero\Repositories\TreeRepositoryTrait;
  *
  * Class EloquentContentRepository
  *
- * @package    Gzero\Repositories\Coentent
+ * @package    Gzero\Repositories\Content
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
@@ -39,7 +39,8 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
                 'translations',
                 function ($q) use ($url, $lang) {
                     $q->where('url', '=', $url);
-                    $q->onlyActive($lang);
+                    $q->onlyActive();
+                    $q->lang($lang);
                 }
             )
             ->with($this->eagerLoad)
@@ -97,12 +98,12 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     /**
      * {@inheritdoc}
      */
-    public function loadUploads($content, Lang $lang, UploadType $type = NULL)
+    public function loadUploads($content, UploadType $type = NULL)
     {
         return $content->load(
             array(
-                'uploads' => function ($query) use ($type, $lang) {
-                        $query->withActiveTranslation($lang);
+                'uploads' => function ($query) use ($type) {
+                        $query->withActiveTranslations();
                         if (!empty($type)) {
                             $query->whereTypeId($type->id);
                         }
@@ -114,12 +115,12 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     /**
      * {@inheritdoc}
      */
-    public function loadTranslations($content, Lang $lang = NULL)
+    public function loadTags($content)
     {
         return $content->load(
             array(
-                'translations' => function ($query) use ($lang) {
-                        $query->onlyActive($lang);
+                'tags' => function ($query) {
+                        $query->withActiveTranslations();
                     }
             )
         );
@@ -128,26 +129,12 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     /**
      * {@inheritdoc}
      */
-    public function loadTags($content, Lang $lang)
+    public function loadMenuLink($content)
     {
         return $content->load(
             array(
-                'tags' => function ($query) use ($lang) {
-                        $query->withActiveTranslation($lang);
-                    }
-            )
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadMenuLink($content, Lang $lang)
-    {
-        return $content->load(
-            array(
-                'menuLink' => function ($query) use ($lang) {
-                        $query->withActiveTranslation($lang);
+                'menuLink' => function ($query) {
+                        $query->withActiveTranslations();
                     }
             )
         );
@@ -170,6 +157,13 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     public function delete($id)
     {
         // TODO: Implement delete() method.
+    }
+
+    protected function beforeEagerLoad(Array &$relations)
+    {
+        $relations['translations'] = function ($q) {
+            $q->onlyActive();
+        };
     }
 
 }

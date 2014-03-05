@@ -50,11 +50,10 @@ interface BlockRepository extends BaseRepository {
      * Lazy load uploads
      *
      * @param Content|Collection $block Block model
-     * @param Lang               $lang  Lang model
      * @param UploadType|NULL    $type  UploadType model
      *
      * @return mixed
      */
-    public function loadUploads($block, Lang $lang, UploadType $type = NULL);
+    public function loadUploads($block, UploadType $type = NULL);
 
 }

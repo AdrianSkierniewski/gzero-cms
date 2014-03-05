@@ -1,8 +1,8 @@
 <?php namespace Gzero\Models\Block;
 
-use Gzero\Models\TranslatableInterface;
+use Gzero\Models\Translatable;
 use Gzero\Models\TranslatableTrait;
-use Gzero\Models\UploadableInterface;
+use Gzero\Models\Uploadable;
 use Gzero\Models\UploadableTrait;
 use Gzero\Presenters\BlockPresenter;
 use Robbo\Presenter\PresentableInterface;
@@ -20,7 +20,7 @@ use Robbo\Presenter\Robbo;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Block extends \Eloquent implements TranslatableInterface, UploadableInterface, PresentableInterface {
+class Block extends \Eloquent implements Translatable, Uploadable, PresentableInterface {
 
     use TranslatableTrait;
     use UploadableTrait;

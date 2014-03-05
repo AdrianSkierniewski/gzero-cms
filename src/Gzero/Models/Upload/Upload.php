@@ -1,6 +1,6 @@
 <?php namespace Gzero\Models\Upload;
 
-use Gzero\Models\TranslatableInterface;
+use Gzero\Models\Translatable;
 use Gzero\Models\TranslatableTrait;
 
 /**
@@ -15,7 +15,7 @@ use Gzero\Models\TranslatableTrait;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Upload extends \Eloquent implements TranslatableInterface {
+class Upload extends \Eloquent implements Translatable {
 
     use TranslatableTrait;
 
@@ -23,7 +23,7 @@ class Upload extends \Eloquent implements TranslatableInterface {
         'name',
         'path',
         'mime',
-        'size',
+        'size'
     );
 
     /**

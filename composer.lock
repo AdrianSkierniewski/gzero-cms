@@ -324,12 +324,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrupaZero/gzero-admin.git",
-                "reference": "59545bd27d31958b167b21baac79f833a375c3f9"
+                "reference": "e6561b5e0a0ef5d2778f071da95a790b1b75bc9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrupaZero/gzero-admin/zipball/59545bd27d31958b167b21baac79f833a375c3f9",
-                "reference": "59545bd27d31958b167b21baac79f833a375c3f9",
+                "url": "https://api.github.com/repos/GrupaZero/gzero-admin/zipball/e6561b5e0a0ef5d2778f071da95a790b1b75bc9f",
+                "reference": "e6561b5e0a0ef5d2778f071da95a790b1b75bc9f",
                 "shasum": ""
             },
             "require": {
@@ -364,7 +364,7 @@
                 "admin panel",
                 "laravel"
             ],
-            "time": "2014-03-01 12:27:33"
+            "time": "2014-03-03 11:49:23"
         },
         {
             "name": "gzero/gzero-api",
@@ -372,17 +372,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrupaZero/gzero-api.git",
-                "reference": "af120dc5c5540fdd688a12ad18a6b274716cba9c"
+                "reference": "ff1c6b13a7d666c7b05f78476e6fd55ee53da0be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrupaZero/gzero-api/zipball/af120dc5c5540fdd688a12ad18a6b274716cba9c",
-                "reference": "af120dc5c5540fdd688a12ad18a6b274716cba9c",
+                "url": "https://api.github.com/repos/GrupaZero/gzero-api/zipball/ff1c6b13a7d666c7b05f78476e6fd55ee53da0be",
+                "reference": "ff1c6b13a7d666c7b05f78476e6fd55ee53da0be",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "4.1.*",
                 "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "gzero/gzero-cms": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -410,7 +413,7 @@
                 "cms",
                 "laravel"
             ],
-            "time": "2014-03-03 11:13:01"
+            "time": "2014-03-04 09:12:50"
         },
         {
             "name": "gzero/gzero-user-panel",
@@ -1370,7 +1373,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1553,12 +1558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DomCrawler.git",
-                "reference": "e82baa333252166ab411240e6bd898023d7568ba"
+                "reference": "4bebef4fd60f15e3fc58f684550beae1f9162f30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/e82baa333252166ab411240e6bd898023d7568ba",
-                "reference": "e82baa333252166ab411240e6bd898023d7568ba",
+                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/4bebef4fd60f15e3fc58f684550beae1f9162f30",
+                "reference": "4bebef4fd60f15e3fc58f684550beae1f9162f30",
                 "shasum": ""
             },
             "require": {
@@ -1599,7 +1604,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-18 16:29:54"
+            "time": "2014-03-01 17:35:04"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1695,7 +1700,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1762,12 +1769,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129"
+                "reference": "5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
-                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce",
+                "reference": "5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce",
                 "shasum": ""
             },
             "require": {
@@ -1805,7 +1812,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-11 15:39:28"
+            "time": "2014-03-03 17:30:41"
         },
         {
             "name": "symfony/http-kernel",
@@ -1814,12 +1821,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f"
+                "reference": "c9830b904493157c951e6126aebd89986bc591d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f",
-                "reference": "a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/c9830b904493157c951e6126aebd89986bc591d0",
+                "reference": "c9830b904493157c951e6126aebd89986bc591d0",
                 "shasum": ""
             },
             "require": {
@@ -1878,7 +1885,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-28 14:10:50"
+            "time": "2014-03-04 07:36:00"
         },
         {
             "name": "symfony/process",
@@ -2104,7 +2111,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -2159,7 +2168,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -2231,7 +2242,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",

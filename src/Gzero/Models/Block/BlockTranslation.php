@@ -1,6 +1,6 @@
 <?php namespace Gzero\Models\Block;
 
-use Gzero\Models\Translation;
+use Gzero\Models\AbstractTranslation;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -14,7 +14,7 @@ use Gzero\Models\Translation;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class BlockTranslation extends Translation {
+class BlockTranslation extends AbstractTranslation {
 
     protected $fillable = array(
         'title',

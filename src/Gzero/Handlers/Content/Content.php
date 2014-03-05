@@ -1,6 +1,5 @@
 <?php namespace Gzero\Handlers\Content;
 
-use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Content\Content as ContentModel;
 use Gzero\Models\Lang;
 use Gzero\Repositories\Content\ContentRepository;
@@ -35,10 +34,9 @@ class Content implements ContentTypeHandler {
     {
         $this->parents = $this->contentRepo->listAncestors($content)->get(); // Ancestors nodes
         $this->contentRepo->loadThumb($this->parents); // Thumbs for all contents
-        $this->contentRepo->loadTranslations($this->parents, $lang); // Translation in current lang
         $this->content = $this->parents->pop(); // Removing our node
         $this->contentRepo->loadTags($this->content, $lang); // Tags only for current content
-        $this->contentRepo->loadUploads($this->content, $lang); // Uploads only for current content
+        $this->contentRepo->loadUploads($this->content); // Uploads only for current content
         return $this;
     }
 

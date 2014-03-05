@@ -1,8 +1,8 @@
 <?php namespace Gzero\Models\Content;
 
-use Gzero\Models\TranslatableInterface;
+use Gzero\Models\Translatable;
 use Gzero\Models\TranslatableTrait;
-use Gzero\Models\UploadableInterface;
+use Gzero\Models\Uploadable;
 use Gzero\Models\UploadableTrait;
 use Gzero\Presenters\ContentPresenter;
 use Robbo\Presenter\PresentableInterface;
@@ -19,7 +19,7 @@ use Robbo\Presenter\PresentableInterface;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Content extends \Gzero\EloquentTree\Model\Tree implements TranslatableInterface, UploadableInterface, PresentableInterface {
+class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
 
     use TranslatableTrait;
     use UploadableTrait;

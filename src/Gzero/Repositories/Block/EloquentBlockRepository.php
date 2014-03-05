@@ -61,12 +61,12 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
     /**
      * {@inheritdoc}
      */
-    public function loadUploads($content, Lang $lang, UploadType $type = NULL)
+    public function loadUploads($content, UploadType $type = NULL)
     {
         return $content->load(
             array(
-                'uploads' => function ($query) use ($type, $lang) {
-                        $query->withActiveTranslation($lang);
+                'uploads' => function ($query) use ($type) {
+                        $query->withActiveTranslations();
                         if (!empty($type)) {
                             $query->whereTypeId($type->id);
                         }

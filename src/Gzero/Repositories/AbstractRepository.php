@@ -16,6 +16,7 @@ abstract class AbstractRepository {
 
     private $builder;
     protected $model;
+
     /**
      * Always loaded relations
      *
@@ -110,6 +111,17 @@ abstract class AbstractRepository {
     }
 
     /**
+     * Use this inheritance function to inject relation with condition
+     *
+     * @param array $relations
+     *
+     */
+    protected function beforeEagerLoad(Array &$relations)
+    {
+        // For inheritance
+    }
+
+    /**
      * Add relations to query
      *
      * @param \Illuminate\Database\Eloquent\Model
@@ -118,8 +130,15 @@ abstract class AbstractRepository {
      */
     protected function eagerLoad($model)
     {
-        foreach ($this->eagerLoad as $load) {
-            $model = $model->with($load);
+        $this->beforeEagerLoad($this->eagerLoad);
+        if (!empty($this->eagerLoad)) {
+            foreach ($this->eagerLoad as $key => $load) {
+                if (is_callable($load)) {
+                    $model = $model->with([$key => $load]);
+                } else {
+                    $model = $model->with($load);
+                }
+            }
         }
         return $model;
     }

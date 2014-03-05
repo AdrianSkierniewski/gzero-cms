@@ -16,24 +16,24 @@ trait TreeRepositoryTrait {
 
     public function getRoot($node)
     {
-        return $node->findRoot();
+        return $this->eagerLoad($node->findRoot());
     }
 
     public function listChildren($parent)
     {
-        $this->setBuilder($parent->findChildren());
+        $this->setBuilder($this->eagerLoad($parent->findChildren()));
         return $this;
     }
 
     public function listAncestors($node)
     {
-        $this->setBuilder($node->findAncestors());
+        $this->setBuilder($this->eagerLoad($node->findAncestors()));
         return $this;
     }
 
     public function listDescendants($node)
     {
-        $this->setBuilder($node->findDescendants());
+        $this->setBuilder($this->eagerLoad($node->findDescendants()));
         return $this;
     }
 

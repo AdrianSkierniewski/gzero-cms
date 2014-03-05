@@ -1,6 +1,6 @@
 <?php namespace Gzero\Models\MenuLink;
 
-use Gzero\Models\Translation;
+use Gzero\Models\AbstractTranslation;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -14,7 +14,7 @@ use Gzero\Models\Translation;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class MenuLinkTranslation extends Translation {
+class MenuLinkTranslation extends AbstractTranslation {
 
     protected $fillable = array(
         'title',

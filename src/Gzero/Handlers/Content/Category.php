@@ -1,6 +1,5 @@
 <?php namespace Gzero\Handlers\Content;
 
-use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Content\Content as ContentModel;
 use Gzero\Models\Lang;
 
@@ -31,7 +30,6 @@ class Category extends Content {
             ->onlyPublic()
             ->get();
         $this->contentRepo->loadThumb($this->children);
-        $this->contentRepo->loadTranslations($this->children, $lang);
         return $this;
     }
 

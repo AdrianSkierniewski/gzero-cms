@@ -1,6 +1,6 @@
 <?php namespace Gzero\Models\Tag;
 
-use Gzero\Models\TranslatableInterface;
+use Gzero\Models\Translatable;
 use Gzero\Models\TranslatableTrait;
 
 /**
@@ -15,7 +15,7 @@ use Gzero\Models\TranslatableTrait;
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Tag extends \Eloquent implements TranslatableInterface {
+class Tag extends \Eloquent implements Translatable {
 
     use TranslatableTrait;
 
