@@ -18,28 +18,12 @@ use Gzero\Repositories\AbstractRepository;
 class EloquentUploadRepository extends AbstractRepository implements UploadRepository {
 
     protected $eagerLoad = ['type'];
-    protected $uploadModel;
+    protected $model;
 
     public function __construct(Upload $upload)
     {
-        $this->uploadModel = $upload;
+        $this->model = $upload;
     }
-
-    //-----------------------------------------------------------------------------------------------
-    // START: Query section
-    //-----------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritdoc}
-     */
-    public function listByType($type)
-    {
-        // TODO: Implement byType() method.
-    }
-
-    //-----------------------------------------------------------------------------------------------
-    // END: Query section
-    //-----------------------------------------------------------------------------------------------
 
     //-----------------------------------------------------------------------------------------------
     // START: Lazy loading section
@@ -48,6 +32,34 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
     //-----------------------------------------------------------------------------------------------
     // END: Lazy loading section
     //-----------------------------------------------------------------------------------------------
+
+    public function getByTag($id, $page = 1, Array $order = [])
+    {
+        return $this->getPaginated(
+            $this->newBuilder()
+                ->whereHas(
+                    'tags',
+                    function ($q) use ($id) {
+                        $q->where('tags.id', '=', $id);
+                    }
+                ),
+            $page,
+            $order
+        );
+    }
+
+    public function getByContent($id, $page = 1, Array $order = [])
+    {
+        return $this->getPaginated(
+            $this->newBuilder()
+                ->select('uploads.*')
+                ->join('content_upload', 'uploads.id', '=', 'content_upload.upload_id')
+                ->where('content_upload.content_id', '=', $id)
+            ,
+            $page,
+            $order
+        );
+    }
 
     /**
      * {@inheritdoc}
@@ -72,5 +84,13 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
     {
         // TODO: Implement delete() method.
     }
+
+    protected function beforeEagerLoad(Array &$relations)
+    {
+        $relations['translations'] = function ($q) {
+            $q->onlyActive();
+        };
+    }
+
 
 }

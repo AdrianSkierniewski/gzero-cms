@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('Gzero\Seeds\UsersSeeder');
         $this->call('Gzero\Seeds\ContentTypesSeeder');
         $this->call('Gzero\Seeds\ContentsSeeder');
-//        $this->call('UploadsSeeder');
+        $this->call('Gzero\Seeds\UploadsSeeder');
         $this->call('Gzero\Seeds\MenuLinksSeeder');
         $this->call('Gzero\Seeds\BlockTypesSeeder');
         $this->call('Gzero\Seeds\BlocksSeeder');

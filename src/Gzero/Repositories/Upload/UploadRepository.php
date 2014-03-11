@@ -1,5 +1,6 @@
 <?php namespace Gzero\Repositories\Upload;
 
+use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Content;
 use Gzero\Repositories\Interfaces\BaseRepository;
 
@@ -18,10 +19,20 @@ use Gzero\Repositories\Interfaces\BaseRepository;
 interface UploadRepository extends BaseRepository {
 
     /**
-     * @param $type
+     * @param       $id
+     * @param int   $page
+     * @param array $order
      *
-     * @return mixed
+     * @return Collection
      */
-    public function listByType($type);
+    public function getByTag($id, $page = 1, Array $order = []);
 
+    /**
+     * @param       $id
+     * @param int   $page
+     * @param array $order
+     *
+     * @return Collection
+     */
+    public function getByContent($id, $page = 1, Array $order = []);
 }

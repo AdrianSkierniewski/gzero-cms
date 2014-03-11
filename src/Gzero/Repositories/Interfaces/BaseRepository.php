@@ -25,52 +25,21 @@ interface BaseRepository {
     public function getById($id);
 
     /**
-     * @param      $column
-     * @param null $operator
-     * @param null $value
-     *
-     * @return $this
-     */
-    public function where($column, $operator = NULL, $value = NULL);
-
-    /**
-     * @param      $column
-     * @param null $operator
-     * @param null $value
-     *
-     * @return $this
-     */
-    public function orWhere($column, $operator = NULL, $value = NULL);
-
-    /**
-     * @param        $column
-     * @param string $direction
-     *
-     * @return $this
-     */
-    public function orderBy($column, $direction = 'asc');
-
-    /**
-     * @return $this
-     */
-    public function listBy();
-
-    /**
-     * Ends query and returns collection
-     *
-     * @param int $page
-     * @param int $limit
+     * @param int   $page
+     * @param array $order
      *
      * @return mixed
      */
-    public function get($page = 1, $limit = 20);
+    public function get($page = 1, Array $order = []);
 
     /**
-     * Ends query and return count
+     * Returns count from last getPaginated() query
      *
      * @return mixed
      */
-    public function count();
+    public function getLastTotal();
+
+    public function clearConditions();
 
     public function create(array $input);
 

@@ -21,7 +21,7 @@ class ContentHandlerTest extends TestCase {
         $contentRepository = Mockery::mock('Gzero\Repositories\Content\ContentRepository')
             ->shouldIgnoreMissing();
         $content           = new Gzero\Handlers\Content\Content($contentRepository);
-        $contentRepository->shouldReceive('listAncestors->get')
+        $contentRepository->shouldReceive('getAncestors')
             ->once()
             ->andReturn(new \Gzero\EloquentBaseModel\Model\Collection(['parent content', 'dummy content']));
         $result = $content->load(new \Gzero\Models\Content\Content(), new Gzero\Models\Lang())->render();

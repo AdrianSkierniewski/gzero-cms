@@ -32,14 +32,16 @@ interface ContentRepository extends BaseRepository, TreeRepository {
     public function getByUrl($url, Lang $lang);
 
     /**
-     * Create new query for list by tag
+     * Returns contents by tag
      *
-     * @param String $tag
-     * @param Lang   $lang Lang object
+     * @param int   $id
+     * @param int   $page
+     * @param array $order
      *
-     * @return $this
+     * @return Collection
      */
-    public function listByTag($tag, Lang $lang);
+    public function getByTag($id, $page = 1, Array $order = []);
+
 
     /**
      * Only public content

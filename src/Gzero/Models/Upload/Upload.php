@@ -62,6 +62,16 @@ class Upload extends \Eloquent implements Translatable {
     }
 
     /**
+     * Represents tags relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('Gzero\Models\Tag\Tag');
+    }
+
+    /**
      * Represents upload translations relation
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

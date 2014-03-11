@@ -19,26 +19,36 @@ trait TreeRepositoryTrait {
         return $this->eagerLoad($node->findRoot());
     }
 
-    public function listChildren($parent)
+    public function getChildren($parent, Array $order = [])
     {
-        $this->setBuilder($this->eagerLoad($parent->findChildren()));
-        return $this;
+        return $this->eagerLoad(
+            $this->extendTreeQuery($parent->findChildren(), $order)
+        )->get();
     }
 
-    public function listAncestors($node)
+    public function getAncestors($node, Array $order = [])
     {
-        $this->setBuilder($this->eagerLoad($node->findAncestors()));
-        return $this;
+        return $this->eagerLoad(
+            $this->extendTreeQuery($node->findAncestors(), $order)
+        )->get();
     }
 
-    public function listDescendants($node)
+    public function getDescendants($node, Array $order = [])
     {
-        $this->setBuilder($this->eagerLoad($node->findDescendants()));
-        return $this;
+        return $this->eagerLoad(
+            $this->extendTreeQuery($node->findDescendants(), $order)
+        )->get();
     }
 
     public function buildTree($nodes)
     {
         return $this->model->buildTree($nodes);
+    }
+
+    protected function extendTreeQuery($builder, $order)
+    {
+        $this->prepareConditionPart($builder);
+        $this->prepareOrderPart($builder, $order);
+        return $builder;
     }
 } 

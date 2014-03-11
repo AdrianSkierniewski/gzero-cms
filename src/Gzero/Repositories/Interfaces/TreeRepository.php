@@ -31,7 +31,7 @@ interface TreeRepository {
      *
      * @return $this
      */
-    public function listChildren($parent);
+    public function getChildren($parent);
 
     /**
      * Create new query for list all ancestors for current node. Last node on list will be current node
@@ -40,7 +40,7 @@ interface TreeRepository {
      *
      * @return mixed
      */
-    public function listAncestors($node);
+    public function getAncestors($node);
 
     /**
      * Create new query for list all descendants for specific node with this node as root node.
@@ -49,7 +49,7 @@ interface TreeRepository {
      *
      * @return $this
      */
-    public function listDescendants($node);
+    public function getDescendants($node);
 
     /**
      * Get links in tree structure

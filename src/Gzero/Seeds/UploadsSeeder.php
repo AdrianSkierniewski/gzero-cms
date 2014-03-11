@@ -27,7 +27,13 @@ class UploadsSeeder extends Seeder {
             $uploads[$i] = Upload::create(
                 array(
                     'type_id' => rand(1, 2),
-                    'path'    => preg_replace('/^.+\/uploads\//', '', $faker->image(\Config::get('gzero.upload.path'))),
+                    'path'    => preg_replace(
+                        '/^.+\/uploads\//',
+                        '',
+                        $faker->image(
+                            \Config::get('gzero-cms::upload.path')
+                        )
+                    ),
                     'size'    => $faker->randomNumber(),
                     'mime'    => 'image/jpeg'
                 )

@@ -34,7 +34,7 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
      */
     public function getByUrl($url, Lang $lang)
     {
-        return $this->model->newQuery()
+        return $this->newBuilder()
             ->whereHas(
                 'translations',
                 function ($q) use ($url, $lang) {
@@ -43,7 +43,6 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
                     $q->lang($lang);
                 }
             )
-            ->with($this->eagerLoad)
             ->first();
     }
 
@@ -51,23 +50,22 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     // START: Query section
     //-----------------------------------------------------------------------------------------------
 
-
     /**
      * {@inheritdoc}
      */
-    public function listByTag($tag, Lang $lang)
+    public function getByTag($id, $page = 1, Array $order = [])
     {
-        return $this->model->newQuery()
-            ->whereHas(
-                'tags',
-                function ($q) use ($tag, $lang) {
-                    $q->join('tag_translations', 'content_tag.tag_id', '=', 'tag_translations.tag_id');
-                    $q->where('name', '=', $tag);
-                    $q->where('lang_id', '=', $lang->id);
-                }
-            )
-            ->with($this->eagerLoad)
-            ->get();
+        return $this->getPaginated(
+            $this->newBuilder()
+                ->whereHas(
+                    'tags',
+                    function ($q) use ($id) {
+                        $q->where('tags.id', '=', $id);
+                    }
+                ),
+            $page,
+            $order
+        );
     }
 
     /**
@@ -75,7 +73,9 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
      */
     public function onlyPublic()
     {
-        $this->getBuilder()->whereIsActive(1);
+        $this->conditions[] = function ($q) {
+            $q->where('is_active', '=', 1);
+        };
         return $this;
     }
 
