@@ -30,6 +30,10 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
         $this->model = $content;
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Query section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * {@inheritdoc}
      */
@@ -46,10 +50,6 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
             )
             ->first();
     }
-
-    //-----------------------------------------------------------------------------------------------
-    // START: Query section
-    //-----------------------------------------------------------------------------------------------
 
     /**
      * {@inheritdoc}
@@ -79,6 +79,13 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
         );
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Query section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Condition section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * {@inheritdoc}
      */
@@ -91,9 +98,8 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     }
 
     //-----------------------------------------------------------------------------------------------
-    // END: Query section
+    // END: Condition section
     //-----------------------------------------------------------------------------------------------
-
     //-----------------------------------------------------------------------------------------------
     // START: Lazy loading section
     //-----------------------------------------------------------------------------------------------
@@ -154,22 +160,47 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     //-----------------------------------------------------------------------------------------------
     // END: Lazy loading section
     //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Modify section
+    //-----------------------------------------------------------------------------------------------
 
+    /**
+     * {@inheritdoc}
+     */
     public function create(array $input)
     {
         // TODO: Implement create() method.
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function update(array $input)
     {
         // TODO: Implement update() method.
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function delete($id)
     {
         // TODO: Implement delete() method.
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Modify section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Protected/Private section
+    //-----------------------------------------------------------------------------------------------
+
+    /**
+     * Adds auto load only active translations.
+     * This function is used in AbstractRepository
+     *
+     * @param array $relations
+     */
     protected function beforeEagerLoad(Array &$relations)
     {
         $relations['translations'] = function ($q) {
@@ -177,5 +208,8 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
         };
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Protected/Private section
+    //-----------------------------------------------------------------------------------------------
 
 }

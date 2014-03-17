@@ -16,7 +16,6 @@ use Gzero\Exceptions\Exception;
  */
 abstract class AbstractRepository {
 
-
     private
         $builder; /* Placeholder for Eloquent Query Builder */
     protected

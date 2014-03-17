@@ -19,7 +19,9 @@ use Gzero\Repositories\Interfaces\BaseRepository;
 interface UploadRepository extends BaseRepository {
 
     /**
-     * @param       $id
+     * Gets uploads by tag
+     *
+     * @param int   $id
      * @param int   $page
      * @param array $order
      *
@@ -28,7 +30,9 @@ interface UploadRepository extends BaseRepository {
     public function getByTag($id, $page = 1, Array $order = []);
 
     /**
-     * @param       $id
+     * Gets uploads by content which they belong
+     *
+     * @param int   $id
      * @param int   $page
      * @param array $order
      *

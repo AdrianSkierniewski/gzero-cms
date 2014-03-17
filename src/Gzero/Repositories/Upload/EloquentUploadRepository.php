@@ -18,7 +18,6 @@ use Gzero\Repositories\AbstractRepository;
 class EloquentUploadRepository extends AbstractRepository implements UploadRepository {
 
     protected $eagerLoad = ['type'];
-    protected $model;
 
     public function __construct(Upload $upload)
     {
@@ -26,13 +25,12 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
     }
 
     //-----------------------------------------------------------------------------------------------
-    // START: Lazy loading section
+    // START: Query section
     //-----------------------------------------------------------------------------------------------
 
-    //-----------------------------------------------------------------------------------------------
-    // END: Lazy loading section
-    //-----------------------------------------------------------------------------------------------
-
+    /**
+     * {@inheritdoc}
+     */
     public function getByTag($id, $page = 1, Array $order = [])
     {
         return $this->getPaginated(
@@ -48,6 +46,9 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getByContent($id, $page = 1, Array $order = [])
     {
         return $this->getPaginated(
@@ -60,6 +61,19 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
             $order
         );
     }
+
+    //-----------------------------------------------------------------------------------------------
+    // END: Query section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Lazy loading section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // END: Lazy loading section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Modify section
+    //-----------------------------------------------------------------------------------------------
 
     /**
      * {@inheritdoc}
@@ -85,6 +99,19 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
         // TODO: Implement delete() method.
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Modify section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Protected/Private section
+    //-----------------------------------------------------------------------------------------------
+
+    /**
+     * Adds auto load only active translations.
+     * This function is used in AbstractRepository
+     *
+     * @param array $relations
+     */
     protected function beforeEagerLoad(Array &$relations)
     {
         $relations['translations'] = function ($q) {
@@ -92,5 +119,8 @@ class EloquentUploadRepository extends AbstractRepository implements UploadRepos
         };
     }
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Protected/Private section
+    //-----------------------------------------------------------------------------------------------
 
 }
