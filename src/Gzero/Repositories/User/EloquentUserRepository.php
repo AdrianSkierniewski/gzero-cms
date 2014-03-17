@@ -1,8 +1,6 @@
-<?php namespace Gzero\Repositories\Block;
+<?php namespace Gzero\Repositories\User;
 
-use Gzero\Models\Block\Block;
-use Gzero\Models\Lang;
-use Gzero\Models\Upload\UploadType;
+use Gzero\Models\User;
 use Gzero\Repositories\AbstractRepository;
 use Gzero\Repositories\TreeRepositoryTrait;
 
@@ -12,91 +10,36 @@ use Gzero\Repositories\TreeRepositoryTrait;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Class EloquentBlockRepository
+ * Class EloquentUserRepository
  *
  * @package    Gzero\Repositories\Coentent
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class EloquentBlockRepository extends AbstractRepository implements BlockRepository {
+class EloquentUserRepository extends AbstractRepository implements UserRepository {
 
-    protected $eagerLoad = ['type'];
+    protected $eagerLoad = [];
 
-    public function __construct(Block $block)
+    public function __construct(User $user)
     {
-        $this->model = $block;
+        $this->model = $user;
     }
 
     //-----------------------------------------------------------------------------------------------
     // START: Query section
     //-----------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAllActive(Lang $lang)
-    {
-        $blocks = $this->eagerLoad($this->model)->whereIsActive(1)->whereNotNull('region')->get();
-        $this->loadTranslations($blocks, $lang);
-        return $blocks;
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Query section
     //-----------------------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------
     // START: Condition section
     //-----------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritdoc}
-     */
-    public function onlyPublic()
-    {
-        $this->conditions[] = function ($q) {
-            $q->where('is_active', '=', 1);
-        };
-        return $this;
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Condition section
     //-----------------------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------
     // START: Lazy loading section
     //-----------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadUploads($content, UploadType $type = NULL)
-    {
-        return $content->load(
-            array(
-                'uploads' => function ($query) use ($type) {
-                        $query->withActiveTranslations();
-                        if (!empty($type)) {
-                            $query->whereTypeId($type->id);
-                        }
-                    }
-            )
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadTranslations($block, Lang $lang = NULL)
-    {
-        return $block->load(
-            array(
-                'translations' => function ($query) use ($lang) {
-                        $query->onlyActive($lang);
-                    }
-            )
-        );
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Lazy loading section
     //-----------------------------------------------------------------------------------------------
@@ -134,21 +77,8 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
     //-----------------------------------------------------------------------------------------------
     // START: Protected/Private section
     //-----------------------------------------------------------------------------------------------
-
-    /**
-     * Adds auto load only active translations.
-     * This function is used in AbstractRepository
-     *
-     * @param array $relations
-     */
-    protected function beforeEagerLoad(Array &$relations)
-    {
-        $relations['translations'] = function ($q) {
-            $q->onlyActive();
-        };
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Protected/Private section
     //-----------------------------------------------------------------------------------------------
+
 }

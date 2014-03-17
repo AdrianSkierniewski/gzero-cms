@@ -43,5 +43,9 @@ class RepositoryServiceProvider extends ServiceProvider {
             'Gzero\Repositories\MenuLink\MenuLinkRepository',
             'Gzero\Repositories\MenuLink\EloquentMenuLinkRepository'
         );
+        $this->app->bind(
+            'Gzero\Repositories\User\UserRepository',
+            'Gzero\Repositories\User\EloquentUserRepository'
+        );
     }
 }
