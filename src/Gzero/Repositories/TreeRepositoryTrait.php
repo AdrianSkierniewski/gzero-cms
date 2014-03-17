@@ -19,11 +19,13 @@ trait TreeRepositoryTrait {
         return $this->eagerLoad($node->findRoot());
     }
 
-    public function getChildren($parent, Array $order = [])
+    public function getChildren($parent, $page = 1, Array $order = [])
     {
-        return $this->eagerLoad(
-            $this->extendTreeQuery($parent->findChildren(), $order)
-        )->get();
+        return $this->getPaginated(
+            $this->eagerLoad($parent->findChildren()),
+            $page,
+            $order
+        );
     }
 
     public function getAncestors($node, Array $order = [])

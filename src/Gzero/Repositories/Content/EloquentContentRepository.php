@@ -4,6 +4,7 @@ use Gzero\Models\Content\Content;
 use Gzero\Models\Lang;
 use Gzero\Models\Upload\UploadType;
 use Gzero\Repositories\AbstractRepository;
+use Gzero\Repositories\Interfaces\Collection;
 use Gzero\Repositories\TreeRepositoryTrait;
 
 /**
@@ -49,6 +50,16 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     //-----------------------------------------------------------------------------------------------
     // START: Query section
     //-----------------------------------------------------------------------------------------------
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoots(Array $order = [])
+    {
+        $builder = $this->newBuilder()->whereNull('parent_id')->where('type_id', '=', 2);
+        $this->prepareOrderPart($builder, $order);
+        return $builder->get();
+    }
 
     /**
      * {@inheritdoc}
@@ -165,5 +176,6 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
             $q->onlyActive();
         };
     }
+
 
 }
