@@ -17,8 +17,6 @@ use Gzero\Models\TranslatableTrait;
  */
 class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
 
-    use TranslatableTrait;
-
     protected $fillable = array(
         'target',
         'weight',

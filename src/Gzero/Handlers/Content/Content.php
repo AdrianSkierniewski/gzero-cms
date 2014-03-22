@@ -35,8 +35,6 @@ class Content implements ContentTypeHandler {
         $this->parents = $this->contentRepo->getAncestors($content); // Ancestors nodes
 //        $this->contentRepo->loadThumb($this->parents); // Thumbs for all contents
         $this->content = $this->parents->pop(); // Removing our node
-//        $this->contentRepo->loadTags($this->content, $lang); // Tags only for current content
-//        $this->contentRepo->loadUploads($this->content); // Uploads only for current content
         return $this;
     }
 

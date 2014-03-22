@@ -22,13 +22,4 @@ interface Translatable {
      */
     public function translations();
 
-    /**
-     * With active translation in specific language or all languages
-     *
-     * @param      $query
-     *
-     * @return mixed
-     */
-    public function scopeWithActiveTranslations($query);
-
 }

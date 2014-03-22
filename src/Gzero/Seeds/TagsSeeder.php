@@ -15,7 +15,7 @@ class TagsSeeder extends Seeder {
                 new TagTranslation(array(
                     'lang_code' => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
                     'name'      => $faker->text(23),
-                    'is_active' => 1
+                    'is_current' => 1
                 ))
             );
 

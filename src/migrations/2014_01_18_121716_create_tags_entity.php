@@ -54,7 +54,7 @@ class CreateTagsEntity extends Migration {
                 $table->integer('tag_id')->unsigned();
                 $table->string('lang_code', 2);
                 $table->string('name');
-                $table->boolean('is_active');
+                $table->boolean('is_current');
                 $table->timestamps();
                 $table->foreign('tag_id')->references('id')->on('tags')->onDelete('CASCADE');
                 $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');

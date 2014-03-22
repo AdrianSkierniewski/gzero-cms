@@ -17,8 +17,6 @@ use Gzero\Models\TranslatableTrait;
  */
 class Tag extends \Eloquent implements Translatable {
 
-    use TranslatableTrait;
-
     protected $fillable = array(
         'is_active'
     );

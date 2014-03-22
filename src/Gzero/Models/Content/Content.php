@@ -25,7 +25,6 @@ use Robbo\Presenter\PresentableInterface;
  */
 class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
 
-    use TranslatableTrait;
     use UploadableTrait;
 
     protected $fillable = array(

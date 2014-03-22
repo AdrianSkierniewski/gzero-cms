@@ -2,7 +2,6 @@
 
 use Gzero\Models\Content\Content;
 use Gzero\Models\Lang;
-use Gzero\Models\Upload\UploadType;
 use Gzero\Repositories\AbstractRepository;
 use Gzero\Repositories\Interfaces\Collection;
 use Gzero\Repositories\TreeRepositoryTrait;
@@ -44,7 +43,7 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
                 'translations',
                 function ($q) use ($url, $lang) {
                     $q->where('url', '=', $url);
-                    $q->onlyActive();
+                    $q->onlyCurrent();
                     $q->lang($lang);
                 }
             )
@@ -112,51 +111,6 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
         return $content->load('thumb');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function loadUploads($content, UploadType $type = NULL)
-    {
-        return $content->load(
-            array(
-                'uploads' => function ($query) use ($type) {
-                        $query->withActiveTranslations();
-                        if (!empty($type)) {
-                            $query->whereTypeId($type->id);
-                        }
-                    }
-            )
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadTags($content)
-    {
-        return $content->load(
-            array(
-                'tags' => function ($query) {
-                        $query->withActiveTranslations();
-                    }
-            )
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadMenuLink($content)
-    {
-        return $content->load(
-            array(
-                'menuLink' => function ($query) {
-                        $query->withActiveTranslations();
-                    }
-            )
-        );
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Lazy loading section
     //-----------------------------------------------------------------------------------------------
@@ -204,7 +158,7 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     protected function beforeEagerLoad(Array &$relations)
     {
         $relations['translations'] = function ($q) {
-            $q->onlyActive();
+            $q->onlyCurrent();
         };
     }
 

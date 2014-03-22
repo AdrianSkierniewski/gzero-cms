@@ -91,7 +91,7 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
         return $block->load(
             array(
                 'translations' => function ($query) use ($lang) {
-                        $query->onlyActive($lang);
+                        $query->onlyCurrent($lang);
                     }
             )
         );
@@ -144,7 +144,7 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
     protected function beforeEagerLoad(Array &$relations)
     {
         $relations['translations'] = function ($q) {
-            $q->onlyActive();
+            $q->onlyCurrent();
         };
     }
 

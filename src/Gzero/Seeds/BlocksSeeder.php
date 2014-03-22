@@ -54,7 +54,7 @@ class BlocksSeeder extends Seeder {
                 'title'     => $faker->sentence(3),
                 'body'      => $faker->text(255),
                 'sites'     => with($content->find(rand(1, 20)))->url, //an existing content url
-                'is_active' => rand(0, 1) //an existing content url
+                'is_current' => rand(0, 1) //an existing content url
             ));
         $translation->block()->associate($block);
         $translation->save();

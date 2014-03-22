@@ -3,7 +3,7 @@
 use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Lang;
 use Gzero\Models\MenuLink\MenuLink;
-use Gzero\Models\MenuLink\MenuLinkAbstractTranslation;
+use Gzero\Models\MenuLink\MenuLinkTranslation;
 use Gzero\Repositories\AbstractRepository;
 use Gzero\Repositories\TreeRepositoryTrait;
 
@@ -25,7 +25,7 @@ class EloquentMenuLinkRepository extends AbstractRepository implements MenuLinkR
 
     protected $translationModel;
 
-    public function __construct(MenuLink $link, MenuLinkAbstractTranslation $translation)
+    public function __construct(MenuLink $link, MenuLinkTranslation $translation)
     {
         $this->model            = $link;
         $this->translationModel = $translation;

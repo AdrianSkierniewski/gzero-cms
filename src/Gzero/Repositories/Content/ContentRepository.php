@@ -3,7 +3,6 @@
 use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Content\Content;
 use Gzero\Models\Lang;
-use Gzero\Models\Upload\UploadType;
 use Gzero\Repositories\Interfaces\BaseRepository;
 use Gzero\Repositories\Interfaces\TreeRepository;
 
@@ -49,23 +48,12 @@ interface ContentRepository extends BaseRepository, TreeRepository {
      */
     public function getByTag($id, $page = 1, Array $order = []);
 
-
     /**
      * Only public content
      *
      * @return $this
      */
     public function onlyPublic();
-
-    /**
-     * Lazy load uploads
-     *
-     * @param Content|Collection $content Content model
-     * @param UploadType|NULL    $type    UploadType model
-     *
-     * @return mixed
-     */
-    public function loadUploads($content, UploadType $type = NULL);
 
     /**
      * Lazy load thumb
@@ -75,22 +63,5 @@ interface ContentRepository extends BaseRepository, TreeRepository {
      * @return mixed
      */
     public function loadThumb($content);
-
-    /**
-     * Lazy load tags
-     *
-     * @param Content|Collection $content Content model
-     *
-     * @return mixed
-     */
-    public function loadTags($content);
-
-    /**
-     * @param Content|Collection $content Content model
-     *
-     * @return mixed
-     */
-    public function loadMenuLink($content);
-
 
 }

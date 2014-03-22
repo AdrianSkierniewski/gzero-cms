@@ -50,7 +50,7 @@ class EloquentLangRepository implements LangRepository {
         return $this->getByCode(\App::getLocale());
     }
 
-    protected function getAllActive()
+    public function getAllActive()
     {
         return $this->lang->getAllActive();
     }

@@ -41,7 +41,7 @@ class CreateMenusEntity extends Migration {
                 $table->string('title');
                 $table->string('url');
                 $table->string('alt');
-                $table->boolean('is_active');
+                $table->boolean('is_current');
                 $table->timestamps();
                 $table->foreign('menu_link_id')->references('id')->on('menu_links')->onDelete('CASCADE');
                 $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');

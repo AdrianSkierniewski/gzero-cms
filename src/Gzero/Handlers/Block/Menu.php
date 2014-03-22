@@ -32,9 +32,7 @@ class Menu implements BlockTypeHandler {
     {
         if ($block->menu_id) {
             $menu        = $this->menuRepo->getById($block->menu_id);
-            $block->menu = $this->menuRepo->buildTree(
-                $this->menuRepo->loadTranslations($this->menuRepo->listDescendants($menu)->get())
-            );
+            $block->menu = $this->menuRepo->buildTree($this->menuRepo->getDescendants($menu));
             $this->block = $block;
         } else {
             throw new BlockHandlerException('Block Menu Handler: Menu not found!');

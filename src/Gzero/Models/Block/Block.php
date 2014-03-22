@@ -22,7 +22,6 @@ use Robbo\Presenter\Robbo;
  */
 class Block extends \Eloquent implements Translatable, Uploadable, PresentableInterface {
 
-    use TranslatableTrait;
     use UploadableTrait;
 
     protected $fillable = array(

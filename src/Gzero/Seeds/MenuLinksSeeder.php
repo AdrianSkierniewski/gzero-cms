@@ -70,7 +70,7 @@ class MenuLinksSeeder extends Seeder {
                 'title'     => $faker->sentence(2),
                 'url'       => 'link-' . $menuLink->id,
                 'alt'       => $faker->sentence(2),
-                'is_active' => 1
+                'is_current' => 1
             ));
         $translation->menuLink()->associate($menuLink);
         $translation->save();

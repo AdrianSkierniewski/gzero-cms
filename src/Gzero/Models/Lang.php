@@ -17,14 +17,38 @@ use Illuminate\Support\Facades\DB;
  */
 class Lang {
 
+    private $data;
+
+    public function __construct($object = NULL)
+    {
+        $this->data = (array) $object;
+    }
+
     public static function getAllActive()
     {
-        return new Collection(DB::table('langs')->where('is_enabled', '=', 1)->get());
+        return new Collection(self::prepareCollectionData(DB::table('langs')->where('is_enabled', '=', 1)->get()));
     }
 
     public static function getAll()
     {
-        return new Collection(DB::table('langs')->get());
+        return new Collection(self::prepareCollectionData(DB::table('langs')->get()));
+    }
+
+    public function getAttribute($key)
+    {
+        if (isset($this->data[$key])) {
+            return $this->data[$key];
+        }
+        return NULL;
+    }
+
+    private static function prepareCollectionData($data)
+    {
+        $returnArray = [];
+        foreach ($data as $value) {
+            $returnArray[] = new self($value);
+        }
+        return $returnArray;
     }
 
 }

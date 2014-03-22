@@ -17,8 +17,6 @@ use Gzero\Models\TranslatableTrait;
  */
 class Upload extends \Eloquent implements Translatable {
 
-    use TranslatableTrait;
-
     protected $fillable = array(
         'name',
         'path',

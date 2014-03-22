@@ -47,7 +47,7 @@ class CreateBlocksEntity extends Migration {
                 $table->string('sites', 255)->nullable();
                 $table->string('title');
                 $table->string('body');
-                $table->boolean('is_active');
+                $table->boolean('is_current');
                 $table->timestamps();
                 $table->foreign('block_id')->references('id')->on('blocks')->onDelete('CASCADE');
                 $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');
