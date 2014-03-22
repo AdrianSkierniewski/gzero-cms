@@ -35,11 +35,6 @@ class EloquentLangRepository implements LangRepository {
         }
     }
 
-    public function getById($id)
-    {
-        return $this->langs->find($id);
-    }
-
     public function getByCode($code)
     {
         return $this->langs->findByAttribute('code', $code);
@@ -57,7 +52,7 @@ class EloquentLangRepository implements LangRepository {
 
     protected function getAllActive()
     {
-        return $this->lang->where('is_active', '=', 1)->get();
+        return $this->lang->getAllActive();
     }
 
 }

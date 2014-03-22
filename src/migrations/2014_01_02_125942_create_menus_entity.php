@@ -37,14 +37,14 @@ class CreateMenusEntity extends Migration {
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('menu_link_id')->unsigned();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_code', 2);
                 $table->string('title');
                 $table->string('url');
                 $table->string('alt');
                 $table->boolean('is_active');
                 $table->timestamps();
                 $table->foreign('menu_link_id')->references('id')->on('menu_links')->onDelete('CASCADE');
-                $table->foreign('lang_id')->references('id')->on('langs')->onDelete('CASCADE');
+                $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');
             }
         );
     }

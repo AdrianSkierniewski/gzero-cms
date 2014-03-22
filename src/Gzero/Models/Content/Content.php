@@ -18,6 +18,10 @@ use Robbo\Presenter\PresentableInterface;
  * @package    Gzero\Models\Content
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
+ *
+ * show off @method
+ *
+ * @method withEntity() withEntity($lang_code = NULL) adds all entity joins
  */
 class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
 
@@ -97,6 +101,30 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
         return $this->hasMany('Gzero\Models\Content\ContentTranslation');
     }
 
+
+    /**
+     * @param      $query
+     * @param null $lang_code
+     *
+     * @return mixed
+     */
+    public function scopeWithEntity($query, $lang_code = NULL)
+    {
+        return $query->select('contents.*')
+            ->join('content_types', 'content_types.id', '=', 'contents.type_id')
+            ->leftJoin('users', 'contents.user_id', '=', 'users.id')
+            ->leftJoin(
+                'content_translations',
+                function ($join) use ($lang_code) {
+                    $join->on('contents.id', '=', 'content_translations.content_id');
+                    $join->where('is_current', '=', 1);
+                    if ($lang_code) {
+                        $join->where('lang_code', '=', $lang_code);
+                    }
+                }
+            );
+    }
+
     public function getTypeName()
     {
         return $this->type->name;
@@ -113,3 +141,4 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
     }
 
 }
+

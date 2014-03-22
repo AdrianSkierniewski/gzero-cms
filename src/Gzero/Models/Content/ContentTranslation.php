@@ -17,11 +17,13 @@ use Gzero\Models\AbstractTranslation;
 class ContentTranslation extends AbstractTranslation {
 
     protected $fillable = array(
+        'lang_code',
         'title',
         'body',
         'seo_title',
         'seo_description',
-        'url'
+        'url',
+        'is_current'
     );
 
     public static $rules = array();

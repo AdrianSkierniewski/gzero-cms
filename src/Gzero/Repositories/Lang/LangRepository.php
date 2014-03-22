@@ -14,8 +14,6 @@
  */
 interface LangRepository {
 
-    public function getById($id);
-
     public function getByCode($code);
 
     public function getCurrent();

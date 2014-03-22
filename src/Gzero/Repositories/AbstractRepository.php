@@ -42,7 +42,7 @@ abstract class AbstractRepository {
      */
     public function get($page = 1, Array $order = [])
     {
-        return $this->getPaginated($this->newBuilder(), $page, $order);
+        return $this->getPaginated($this->newBuilder()->withEntity(), $page, $order);
     }
 
     /**
@@ -82,13 +82,14 @@ abstract class AbstractRepository {
      */
     protected final function getPaginated($builder, $page = 0, Array $order = [])
     {
+        $table = $builder->getModel()->getTable();
         $this->prepareConditionPart($builder);
         $this->total = $builder->count();
         $this->prepareOrderPart($builder, $order);
         return $builder
             ->skip(10 * ($page - 1))
             ->take(10)
-            ->get();
+            ->get([$table . '.*']);
     }
 
     //-----------------------------------------------------------------------------------------------

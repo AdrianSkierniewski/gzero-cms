@@ -54,16 +54,16 @@ class CreateContentsEntity extends Migration {
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('content_id')->unsigned();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_code', 2);
                 $table->string('url');
                 $table->string('title');
                 $table->string('body');
                 $table->string('seo_title');
                 $table->string('seo_description');
-                $table->boolean('is_active');
+                $table->boolean('is_current');
                 $table->timestamps();
                 $table->foreign('content_id')->references('id')->on('contents')->onDelete('CASCADE');
-                $table->foreign('lang_id')->references('id')->on('langs')->onDelete('CASCADE');
+                $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');
             }
         );
     }

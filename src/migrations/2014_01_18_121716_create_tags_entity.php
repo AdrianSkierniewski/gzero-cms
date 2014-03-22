@@ -52,12 +52,12 @@ class CreateTagsEntity extends Migration {
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('tag_id')->unsigned();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_code', 2);
                 $table->string('name');
                 $table->boolean('is_active');
                 $table->timestamps();
                 $table->foreign('tag_id')->references('id')->on('tags')->onDelete('CASCADE');
-                $table->foreign('lang_id')->references('id')->on('langs')->onDelete('CASCADE');
+                $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');
             }
         );
     }

@@ -1,5 +1,8 @@
 <?php namespace Gzero\Models;
 
+use Gzero\EloquentBaseModel\Model\Collection;
+use Illuminate\Support\Facades\DB;
+
 /**
  * This file is part of the GZERO CMS package.
  *
@@ -12,10 +15,16 @@
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Lang extends \Eloquent {
+class Lang {
 
-    protected $guarded = array();
+    public static function getAllActive()
+    {
+        return new Collection(DB::table('langs')->where('is_enabled', '=', 1)->get());
+    }
 
-    public static $rules = array();
+    public static function getAll()
+    {
+        return new Collection(DB::table('langs')->get());
+    }
 
 }

@@ -46,7 +46,7 @@ class UploadsSeeder extends Seeder {
             for ($i = 0; $i < 5; $i++) {
                 $upload->translations()->save(
                     new \Gzero\Models\Upload\UploadTranslation(array(
-                        'lang_id'   => $i + 1,
+                        'lang_code' => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
                         'name'      => $faker->text(60),
                         'is_active' => 1
                     ))

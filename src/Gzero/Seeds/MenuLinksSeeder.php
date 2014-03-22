@@ -1,7 +1,6 @@
 <?php namespace Gzero\Seeds;
 
 use Gzero\Models\Content\Content;
-use Gzero\Models\Lang;
 use Gzero\Models\MenuLink\MenuLink;
 use Gzero\Models\MenuLink\MenuLinkTranslation;
 use Illuminate\Database\Seeder;
@@ -67,12 +66,12 @@ class MenuLinksSeeder extends Seeder {
 
         $translation = new MenuLinkTranslation(
             array(
+                'lang_code' => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
                 'title'     => $faker->sentence(2),
                 'url'       => 'link-' . $menuLink->id,
                 'alt'       => $faker->sentence(2),
                 'is_active' => 1
             ));
-        $translation->lang()->associate(Lang::find($faker->randomNumber(1, Lang::count())));
         $translation->menuLink()->associate($menuLink);
         $translation->save();
         return $menuLink;

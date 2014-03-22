@@ -4,7 +4,6 @@ use Gzero\Models\Block\Block;
 use Gzero\Models\Block\BlockTranslation;
 use Gzero\Models\Block\BlockType;
 use Gzero\Models\Content\ContentTranslation;
-use Gzero\Models\Lang;
 use Illuminate\Database\Seeder;
 
 class BlocksSeeder extends Seeder {
@@ -51,12 +50,12 @@ class BlocksSeeder extends Seeder {
         $block->save();
         $translation = new BlockTranslation(
             array(
+                'lang_code' => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
                 'title'     => $faker->sentence(3),
                 'body'      => $faker->text(255),
                 'sites'     => with($content->find(rand(1, 20)))->url, //an existing content url
                 'is_active' => rand(0, 1) //an existing content url
             ));
-        $translation->lang()->associate(Lang::find($faker->randomNumber(1, 5)));
         $translation->block()->associate($block);
         $translation->save();
         return $block;

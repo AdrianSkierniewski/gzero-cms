@@ -3,7 +3,6 @@
 use Gzero\Models\Content\Content;
 use Gzero\Models\Content\ContentTranslation;
 use Gzero\Models\Content\ContentType;
-use Gzero\Models\Lang;
 use Illuminate\Database\Seeder;
 
 
@@ -82,12 +81,12 @@ class ContentsSeeder extends Seeder {
 
         $translation = new ContentTranslation(
             array(
-                'url'       => 'content-' . $content->id,
-                'title'     => $faker->sentence(3),
-                'body'      => $faker->text(255),
-                'is_active' => 1
+                'lang_code'  => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
+                'url'        => 'content-' . $content->id,
+                'title'      => $faker->sentence(3),
+                'body'       => $faker->text(255),
+                'is_current' => 1
             ));
-        $translation->lang()->associate(Lang::find($faker->randomNumber(1, Lang::count())));
         $translation->content()->associate($content);
         $translation->save();
         return $content;

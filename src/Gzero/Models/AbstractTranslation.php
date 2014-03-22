@@ -16,11 +16,11 @@ abstract class AbstractTranslation extends \Eloquent {
 
     public function scopeOnlyActive($query)
     {
-        return $query->whereIsActive(1);
+        return $query->whereIsCurrent(1);
     }
 
     public function scopeLang($query, Lang $lang)
     {
-        return $query->whereLangId($lang->id);
+        return $query->whereLangCode($lang->code);
     }
 }

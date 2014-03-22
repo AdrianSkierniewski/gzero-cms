@@ -56,7 +56,7 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
      */
     public function getRoots(Array $order = [])
     {
-        $builder = $this->newBuilder()->whereNull('parent_id')->where('type_id', '=', 2);
+        $builder = $this->newBuilder()->withEntity()->whereNull('parent_id')->where('type_id', '=', 2);
         $this->prepareOrderPart($builder, $order);
         return $builder->get();
     }

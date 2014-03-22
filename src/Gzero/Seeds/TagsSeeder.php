@@ -13,9 +13,9 @@ class TagsSeeder extends Seeder {
             $tag = Tag::create(array('is_active' => 1));
             $tag->translations()->save(
                 new TagTranslation(array(
-                    'is_active' => 1,
-                    'lang_id'   => rand(1, 5),
-                    'name'      => $faker->text(23)
+                    'lang_code' => $faker->randomElement(['pl', 'de', 'en', 'fr', 'ru']),
+                    'name'      => $faker->text(23),
+                    'is_active' => 1
                 ))
             );
 

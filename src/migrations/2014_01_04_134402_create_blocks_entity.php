@@ -43,14 +43,14 @@ class CreateBlocksEntity extends Migration {
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('block_id')->unsigned();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_code', 2);
                 $table->string('sites', 255)->nullable();
                 $table->string('title');
                 $table->string('body');
                 $table->boolean('is_active');
                 $table->timestamps();
                 $table->foreign('block_id')->references('id')->on('blocks')->onDelete('CASCADE');
-                $table->foreign('lang_id')->references('id')->on('langs')->onDelete('CASCADE');
+                $table->foreign('lang_code')->references('code')->on('langs')->onDelete('CASCADE');
             }
         );
     }
