@@ -21,6 +21,10 @@ class Tag extends \Eloquent implements Translatable {
         'is_active'
     );
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents tag translations relation
      *
@@ -40,4 +44,9 @@ class Tag extends \Eloquent implements Translatable {
     {
         return $this->belongsToMany('Gzero\Models\Content\Content')->withTimestamps();
     }
+
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
+
 }

@@ -38,6 +38,13 @@ interface ContentRepository extends BaseRepository, TreeRepository {
     public function getRoots();
 
     /**
+     * Gets categories on tree structure
+     *
+     * @return mixed
+     */
+    public function getCategoriesTree();
+
+    /**
      * Returns contents by tag
      *
      * @param int   $id

@@ -24,16 +24,33 @@ class Lang {
         $this->data = (array) $object;
     }
 
-    public static function getAllActive()
+    /**
+     * Returns all enabled langs
+     *
+     * @return Collection
+     */
+    public static function getAllEnabled()
     {
         return new Collection(self::prepareCollectionData(DB::table('langs')->where('is_enabled', '=', 1)->get()));
     }
 
+    /**
+     * Returns all langs
+     *
+     * @return Collection
+     */
     public static function getAll()
     {
         return new Collection(self::prepareCollectionData(DB::table('langs')->get()));
     }
 
+    /**
+     * Returns attribute stored in $data property
+     *
+     * @param $key
+     *
+     * @return null
+     */
     public function getAttribute($key)
     {
         if (isset($this->data[$key])) {
@@ -42,6 +59,26 @@ class Lang {
         return NULL;
     }
 
+    /**
+     * Magic getter
+     *
+     * @param $property
+     *
+     * @return null
+     */
+    public function __get($property)
+    {
+        return $this->getAttribute($property);
+    }
+
+    /**
+     * Function preparing data for collection
+     * (Same as returned from Eloquent model query)
+     *
+     * @param $data
+     *
+     * @return array
+     */
     private static function prepareCollectionData($data)
     {
         $returnArray = [];

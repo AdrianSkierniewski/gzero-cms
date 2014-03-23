@@ -21,6 +21,10 @@ class TagTranslation extends AbstractTranslation {
         'is_active'
     );
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents tag relation
      *
@@ -31,13 +35,8 @@ class TagTranslation extends AbstractTranslation {
         return $this->belongsTo('Gzero\Models\Tag\Tag');
     }
 
-    /**
-     * Represents lang relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo('Gzero\Models\Lang');
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
+
 } 

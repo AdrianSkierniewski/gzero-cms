@@ -1,9 +1,9 @@
 <?php namespace Gzero\Repositories\Content;
 
+use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Models\Content\Content;
 use Gzero\Models\Lang;
 use Gzero\Repositories\AbstractRepository;
-use Gzero\Repositories\Interfaces\Collection;
 use Gzero\Repositories\TreeRepositoryTrait;
 
 /**
@@ -59,6 +59,25 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
         $this->prepareOrderPart($builder, $order);
         return $builder->get();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategoriesTree()
+    {
+        $collection = new Collection();
+        $roots      = $this->getRoots();
+        foreach ($roots as $root) {
+            /* @var  \Gzero\Models\Content\Content $root */
+            $collection->add(
+                $root->buildTree(
+                    $this->eagerLoad($root->findDescendants())->where('type_id', '=', 2)->get()
+                )
+            );
+        }
+        return $collection;
+    }
+
 
     /**
      * {@inheritdoc}

@@ -20,6 +20,6 @@ interface LangRepository {
 
     public function getAll();
 
-    public function getAllActive();
+    public function getAllEnabled();
 
 } 

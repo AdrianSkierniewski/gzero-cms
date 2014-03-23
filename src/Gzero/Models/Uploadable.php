@@ -17,6 +17,4 @@ interface Uploadable {
 
     public function uploads();
 
-    public function scopeWithUpload($query, $type_id = NULL);
-
-} 
+}

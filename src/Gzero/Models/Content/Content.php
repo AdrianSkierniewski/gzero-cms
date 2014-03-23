@@ -25,8 +25,6 @@ use Robbo\Presenter\PresentableInterface;
  */
 class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
 
-    use UploadableTrait;
-
     protected $fillable = array(
         'rating',
         'visits',
@@ -39,6 +37,48 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
         'options',
         'published_at',
     );
+
+    /**
+     * Return a created presenter.
+     *
+     * @return \Robbo\Presenter\Presenter
+     */
+    public function getPresenter()
+    {
+        return new ContentPresenter($this);
+    }
+
+    /**
+     * @param      $query
+     * @param null $lang_code
+     *
+     * @return mixed
+     */
+    public function scopeWithEntity($query, $lang_code = NULL)
+    {
+        return $query->select('contents.*')
+            ->join('content_types', 'content_types.id', '=', 'contents.type_id')
+            ->leftJoin('users', 'contents.user_id', '=', 'users.id')
+            ->leftJoin(
+                'content_translations',
+                function ($join) use ($lang_code) {
+                    $join->on('contents.id', '=', 'content_translations.content_id');
+                    $join->where('is_current', '=', 1);
+                    if ($lang_code) {
+                        $join->where('lang_code', '=', $lang_code);
+                    }
+                }
+            );
+    }
+
+    public function getTypeName()
+    {
+        return $this->type->name;
+    }
+
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
 
     /**
      * Represents content relation
@@ -100,44 +140,9 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
         return $this->hasMany('Gzero\Models\Content\ContentTranslation');
     }
 
-
-    /**
-     * @param      $query
-     * @param null $lang_code
-     *
-     * @return mixed
-     */
-    public function scopeWithEntity($query, $lang_code = NULL)
-    {
-        return $query->select('contents.*')
-            ->join('content_types', 'content_types.id', '=', 'contents.type_id')
-            ->leftJoin('users', 'contents.user_id', '=', 'users.id')
-            ->leftJoin(
-                'content_translations',
-                function ($join) use ($lang_code) {
-                    $join->on('contents.id', '=', 'content_translations.content_id');
-                    $join->where('is_current', '=', 1);
-                    if ($lang_code) {
-                        $join->where('lang_code', '=', $lang_code);
-                    }
-                }
-            );
-    }
-
-    public function getTypeName()
-    {
-        return $this->type->name;
-    }
-
-    /**
-     * Return a created presenter.
-     *
-     * @return \Robbo\Presenter\Presenter
-     */
-    public function getPresenter()
-    {
-        return new ContentPresenter($this);
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
 }
 

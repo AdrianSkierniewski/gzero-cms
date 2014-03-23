@@ -21,6 +21,6 @@ abstract class AbstractTranslation extends \Eloquent {
 
     public function scopeLang($query, Lang $lang)
     {
-        return $query->whereLangCode($lang->getAttribute('code'));
+        return $query->whereLangCode($lang->code);
     }
 }

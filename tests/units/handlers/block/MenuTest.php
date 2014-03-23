@@ -44,7 +44,7 @@ class MenuTest extends TestCase {
             ->once()
             ->andReturn('Block')
             ->getMock();
-        $this->menuRepo->shouldReceive('listDescendants->get')
+        $this->menuRepo->shouldReceive('getDescendants')
             ->once();
         $menuHandler = new Gzero\Handlers\Block\Menu($this->menuRepo);
         $menuHandler->load((object) ['menu_id' => 1], new Gzero\Models\Lang);

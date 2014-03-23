@@ -22,6 +22,10 @@ class UploadTranslation extends AbstractTranslation {
 
     public static $rules = array();
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents upload relation
      *
@@ -32,15 +36,8 @@ class UploadTranslation extends AbstractTranslation {
         return $this->belongsTo('Gzero\Models\Upload\Upload');
     }
 
-    /**
-     * Represents lang relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo('Gzero\Models\Lang');
-    }
-
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
 }

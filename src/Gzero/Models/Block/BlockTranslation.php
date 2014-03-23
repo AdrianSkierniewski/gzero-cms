@@ -23,6 +23,15 @@ class BlockTranslation extends AbstractTranslation {
 
     public static $rules = array();
 
+    public function getBlockType()
+    {
+        return $this->block->type->name;
+    }
+
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents block relation
      *
@@ -33,18 +42,8 @@ class BlockTranslation extends AbstractTranslation {
         return $this->belongsTo('Gzero\Models\Block\Block');
     }
 
-    /**
-     * Represents lang relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo('Gzero\Models\Lang');
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
-    public function getBlockType()
-    {
-        return $this->block->type->name;
-    }
 }

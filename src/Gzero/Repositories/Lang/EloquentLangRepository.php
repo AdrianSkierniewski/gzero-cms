@@ -30,7 +30,7 @@ class EloquentLangRepository implements LangRepository {
         $this->lang  = $lang;
         $this->langs = $this->cache->get('langs');
         if (!$this->langs) {
-            $this->langs = $this->getAllActive();
+            $this->langs = $this->getAllEnabled();
             $this->cache->forever('langs', $this->langs);
         }
     }
@@ -50,9 +50,9 @@ class EloquentLangRepository implements LangRepository {
         return $this->getByCode(\App::getLocale());
     }
 
-    public function getAllActive()
+    public function getAllEnabled()
     {
-        return $this->lang->getAllActive();
+        return $this->lang->getAllEnabled();
     }
 
 }

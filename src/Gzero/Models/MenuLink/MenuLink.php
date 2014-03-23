@@ -26,6 +26,9 @@ class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
     protected $guarded = array();
 
     public static $rules = array();
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
 
     /**
      * Represents content relation
@@ -46,5 +49,10 @@ class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
     {
         return $this->hasMany('Gzero\Models\MenuLink\MenuLinkTranslation');
     }
+
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
+
 
 }

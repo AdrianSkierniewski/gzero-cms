@@ -28,6 +28,10 @@ class ContentTranslation extends AbstractTranslation {
 
     public static $rules = array();
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents content relation
      *
@@ -38,14 +42,8 @@ class ContentTranslation extends AbstractTranslation {
         return $this->belongsTo('Gzero\Models\Content\Content');
     }
 
-    /**
-     * Represents lang relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo('Gzero\Models\Lang');
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
 }

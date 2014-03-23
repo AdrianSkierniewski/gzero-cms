@@ -24,6 +24,16 @@ class Upload extends \Eloquent implements Translatable {
         'size'
     );
 
+
+    public function scopeWhereType($query, $typ_id)
+    {
+        return $query->where('type_id', '=', $typ_id);
+    }
+
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents upload type relation
      *
@@ -80,9 +90,8 @@ class Upload extends \Eloquent implements Translatable {
 
     }
 
-    public function scopeWhereType($query, $typ_id)
-    {
-        return $query->where('type_id', '=', $typ_id);
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
 }

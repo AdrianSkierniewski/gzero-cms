@@ -22,11 +22,23 @@ use Robbo\Presenter\Robbo;
  */
 class Block extends \Eloquent implements Translatable, Uploadable, PresentableInterface {
 
-    use UploadableTrait;
-
     protected $fillable = array(
         'is_active'
     );
+
+    /**
+     * Return a created presenter.
+     *
+     * @return \Robbo\Presenter\Presenter
+     */
+    public function getPresenter()
+    {
+        return new BlockPresenter($this);
+    }
+
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
 
     /**
      * Represents type relation
@@ -58,13 +70,8 @@ class Block extends \Eloquent implements Translatable, Uploadable, PresentableIn
         return $this->hasMany('Gzero\Models\Block\BlockTranslation');
     }
 
-    /**
-     * Return a created presenter.
-     *
-     * @return \Robbo\Presenter\Presenter
-     */
-    public function getPresenter()
-    {
-        return new BlockPresenter($this);
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
+
 }

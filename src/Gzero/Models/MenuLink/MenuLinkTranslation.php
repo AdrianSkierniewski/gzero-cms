@@ -25,6 +25,10 @@ class MenuLinkTranslation extends AbstractTranslation {
 
     public static $rules = array();
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Relations section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Represents menu link relation
      *
@@ -35,14 +39,8 @@ class MenuLinkTranslation extends AbstractTranslation {
         return $this->belongsTo('Gzero\Models\MenuLink\MenuLink');
     }
 
-    /**
-     * Represents lang relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo('Gzero\Models\Lang');
-    }
+    //-----------------------------------------------------------------------------------------------
+    // END: Relations section
+    //-----------------------------------------------------------------------------------------------
 
 }
