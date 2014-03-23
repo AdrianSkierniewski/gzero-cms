@@ -110,7 +110,7 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     public function onlyPublic()
     {
         $this->conditions[] = function ($q) {
-            $q->where('is_active', '=', 1);
+            $q->where('is_current', '=', 1);
         };
         return $this;
     }
