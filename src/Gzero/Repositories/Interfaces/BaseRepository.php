@@ -39,6 +39,11 @@ interface BaseRepository {
      */
     public function getLastTotal();
 
+    /**
+     * Clear all conditions for this repository
+     *
+     * @return mixed
+     */
     public function clearConditions();
 
     public function create(array $input);

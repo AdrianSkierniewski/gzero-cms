@@ -21,7 +21,8 @@ use Robbo\Presenter\PresentableInterface;
  *
  * show off @method
  *
- * @method withEntity() withEntity($lang_code = NULL) adds all entity joins
+ * @method withEntity() withEntity($lang_code = NULL) Scope method - adds all entity joins
+ * @method basicOrder() basicOrder() Scope method - adds basic order by to query
  */
 class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
 
@@ -49,6 +50,8 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
     }
 
     /**
+     * Scope with all join`s required to order by tabular data
+     *
      * @param      $query
      * @param null $lang_code
      *
@@ -57,6 +60,7 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
     public function scopeWithEntity($query, $lang_code = NULL)
     {
         return $query->select('contents.*')
+            ->basicOrder()
             ->join('content_types', 'content_types.id', '=', 'contents.type_id')
             ->leftJoin('users', 'contents.user_id', '=', 'users.id')
             ->leftJoin(
@@ -68,9 +72,27 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
                         $join->where('lang_code', '=', $lang_code);
                     }
                 }
-            );
+            )
+            ->groupBy('contents.id'); // We have to make sure that only one content will be returned
     }
 
+    /**
+     * Scope with basic order by
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeBasicOrder($query)
+    {
+        return $query->orderBy('weight', 'asc')->orderBy('published_at', 'desc');
+    }
+
+    /**
+     * Returns type name for specific content
+     *
+     * @return mixed
+     */
     public function getTypeName()
     {
         return $this->type->name;

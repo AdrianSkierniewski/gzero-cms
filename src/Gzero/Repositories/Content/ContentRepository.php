@@ -20,6 +20,10 @@ use Gzero\Repositories\Interfaces\TreeRepository;
  */
 interface ContentRepository extends BaseRepository, TreeRepository {
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Query section
+    //-----------------------------------------------------------------------------------------------
+
     /**
      * Gets content by url
      *
@@ -33,16 +37,20 @@ interface ContentRepository extends BaseRepository, TreeRepository {
     /**
      * Get all root categories
      *
+     * @param array $orderBy
+     *
      * @return mixed
      */
-    public function getRoots();
+    public function getRoots(Array $orderBy = []);
 
     /**
      * Gets categories on tree structure
      *
+     * @param array $orderBy
+     *
      * @return mixed
      */
-    public function getCategoriesTree();
+    public function getCategoriesTree(Array $orderBy = []);
 
     /**
      * Returns contents by tag
@@ -55,12 +63,12 @@ interface ContentRepository extends BaseRepository, TreeRepository {
      */
     public function getByTag($id, $page = 1, Array $order = []);
 
-    /**
-     * Only public content
-     *
-     * @return $this
-     */
-    public function onlyPublic();
+    //-----------------------------------------------------------------------------------------------
+    // END: Query section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Lazy loading section
+    //-----------------------------------------------------------------------------------------------
 
     /**
      * Lazy load thumb
@@ -71,4 +79,21 @@ interface ContentRepository extends BaseRepository, TreeRepository {
      */
     public function loadThumb($content);
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Lazy loading section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Condition section
+    //-----------------------------------------------------------------------------------------------
+
+    /**
+     * Only public content
+     *
+     * @return $this
+     */
+    public function onlyPublic();
+
+    //-----------------------------------------------------------------------------------------------
+    // END: Condition section
+    //-----------------------------------------------------------------------------------------------
 }

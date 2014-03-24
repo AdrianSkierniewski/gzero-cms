@@ -2,7 +2,6 @@
 
 use Gzero\Models\Block\Block;
 use Gzero\Models\Lang;
-use Gzero\Models\Upload\UploadType;
 use Gzero\Repositories\AbstractRepository;
 use Gzero\Repositories\TreeRepositoryTrait;
 
@@ -37,7 +36,6 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
     public function getAllActive(Lang $lang)
     {
         $blocks = $this->eagerLoad($this->model)->whereIsActive(1)->whereNotNull('region')->get();
-        $this->loadTranslations($blocks, $lang);
         return $blocks;
     }
 
@@ -54,51 +52,13 @@ class EloquentBlockRepository extends AbstractRepository implements BlockReposit
     public function onlyPublic()
     {
         $this->conditions[] = function ($q) {
-            $q->where('is_active', '=', 1);
+            $q->where('is_current', '=', 1);
         };
         return $this;
     }
 
     //-----------------------------------------------------------------------------------------------
     // END: Condition section
-    //-----------------------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------------------
-    // START: Lazy loading section
-    //-----------------------------------------------------------------------------------------------
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadUploads($content, UploadType $type = NULL)
-    {
-        return $content->load(
-            array(
-                'uploads' => function ($query) use ($type) {
-                        $query->withActiveTranslations();
-                        if (!empty($type)) {
-                            $query->whereTypeId($type->id);
-                        }
-                    }
-            )
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadTranslations($block, Lang $lang = NULL)
-    {
-        return $block->load(
-            array(
-                'translations' => function ($query) use ($lang) {
-                        $query->onlyCurrent($lang);
-                    }
-            )
-        );
-    }
-
-    //-----------------------------------------------------------------------------------------------
-    // END: Lazy loading section
     //-----------------------------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------
     // START: Modify section

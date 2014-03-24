@@ -117,6 +117,7 @@ abstract class AbstractRepository {
         foreach ($order as $column => $direction) {
             $builder->orderBy($column, $direction);
         }
+        return $builder;
     }
 
     /**

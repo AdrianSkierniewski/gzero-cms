@@ -53,25 +53,26 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
     /**
      * {@inheritdoc}
      */
-    public function getRoots(Array $order = [])
+    public function getRoots(Array $orderBy = [])
     {
         $builder = $this->newBuilder()->withEntity()->whereNull('parent_id')->where('type_id', '=', 2);
-        $this->prepareOrderPart($builder, $order);
+        $this->prepareOrderPart($builder, $orderBy);
         return $builder->get();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCategoriesTree()
+    public function getCategoriesTree(Array $orderBy = [])
     {
         $collection = new Collection();
-        $roots      = $this->getRoots();
+        $roots      = $this->getRoots($orderBy);
         foreach ($roots as $root) {
             /* @var  \Gzero\Models\Content\Content $root */
+            $builder = $this->prepareOrderPart($root->findDescendants()->basicOrder(), $orderBy); // Basic order + order part
             $collection->add(
                 $root->buildTree(
-                    $this->eagerLoad($root->findDescendants())->where('type_id', '=', 2)->get()
+                    $this->eagerLoad($builder)->where('type_id', '=', 2)->get()
                 )
             );
         }

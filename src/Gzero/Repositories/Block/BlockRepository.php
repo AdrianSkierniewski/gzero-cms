@@ -1,9 +1,6 @@
 <?php namespace Gzero\Repositories\Block;
 
-use Gzero\EloquentBaseModel\Model\Collection;
-use Gzero\Models\Content\Content;
 use Gzero\Models\Lang;
-use Gzero\Models\Upload\UploadType;
 use Gzero\Repositories\Interfaces\BaseRepository;
 
 /**
@@ -20,6 +17,10 @@ use Gzero\Repositories\Interfaces\BaseRepository;
  */
 interface BlockRepository extends BaseRepository {
 
+    //-----------------------------------------------------------------------------------------------
+    // START: Query section
+    //--------------------------------------------------------------------------------------------
+
     /**
      * Gets all active blocks with translation in specified lang
      *
@@ -29,31 +30,22 @@ interface BlockRepository extends BaseRepository {
      */
     public function getAllActive(Lang $lang);
 
+    //-----------------------------------------------------------------------------------------------
+    // END: Query section
+    //-----------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+    // START: Condition section
+    //-----------------------------------------------------------------------------------------------
+
     /**
-     * Only public block
+     * Only public content
      *
      * @return $this
      */
     public function onlyPublic();
 
-    /**
-     * Lazy load translations
-     *
-     * @param Content|Collection $block Block model
-     * @param Lang               $lang  Lang model
-     *
-     * @return mixed
-     */
-    public function loadTranslations($block, Lang $lang = NULL);
-
-    /**
-     * Lazy load uploads
-     *
-     * @param Content|Collection $block Block model
-     * @param UploadType|NULL    $type  UploadType model
-     *
-     * @return mixed
-     */
-    public function loadUploads($block, UploadType $type = NULL);
+    //-----------------------------------------------------------------------------------------------
+    // END: Condition section
+    //-----------------------------------------------------------------------------------------------
 
 }
