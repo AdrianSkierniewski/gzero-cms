@@ -13,8 +13,8 @@ class ContentsSeeder extends Seeder {
         $faker = \Faker\Factory::create();
         // creating contents
         $pages = array();
-        for ($i = 0; $i < 20; $i++) {
-            if ($i < 2) {
+        for ($i = 0; $i < 25; $i++) {
+            if ($i < 5) {
                 $type = ContentType::find(2); // category
             } else {
                 $type = ContentType::find(1); // content
@@ -22,20 +22,29 @@ class ContentsSeeder extends Seeder {
             $pages[] = $this->_createFakeContent($faker, $type);
         }
         // creating roots
+        // roots are also categories
         $roots = array();
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $roots[] = $pages[$i]->setAsRoot();
             // deleting roots
             unset($pages[$i]);
         }
         $pages = array_values($pages);
+
+        // nesting categories
+        $roots[1]->setChildOf($roots[0]);
+        $roots[2]->setChildOf($roots[0]);
+        $roots[3]->setChildOf($roots[2]);
+        $roots[4]->setChildOf($roots[3]);
+
         // creating level 1 parents
-        $parents[] = $pages[0]->setChildOf($roots[0]);
-        $parents[] = $pages[1]->setChildOf($roots[0]);
-        $parents[] = $pages[2]->setChildOf($roots[0]);
-        $parents[] = $pages[3]->setChildOf($roots[1]);
-        $parents[] = $pages[4]->setChildOf($roots[1]);
-        $parents[] = $pages[5]->setChildOf($roots[1]);
+        $pages[0]->setChildOf($roots[0]);
+        $pages[1]->setChildOf($roots[0]);
+        $pages[2]->setChildOf($roots[0]);
+        $pages[3]->setChildOf($roots[1]);
+        $pages[4]->setChildOf($roots[1]);
+        $pages[5]->setChildOf($roots[1]);
+
         for ($i = 0; $i < 6; $i++) {
             // updating level 1 parents urls
             $this->_updateUrl($pages[$i]);
@@ -45,7 +54,7 @@ class ContentsSeeder extends Seeder {
         // attaching children to the parents
         foreach ($pages as $page) {
             // nesting page to the random category
-            $page->setChildOf($parents[$faker->randomNumber(0, count($parents) - 1)]);
+            $page->setChildOf($roots[$faker->randomNumber(0, count($roots) - 1)]);
             // updating pages urls after building tree
             $this->_updateUrl($page);
         }
