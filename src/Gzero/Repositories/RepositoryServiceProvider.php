@@ -23,6 +23,17 @@ class RepositoryServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        /**
+         * Models
+         */
+        $this->app->bind(
+            'Gzero\Models\Content',
+            'Gzero\Models\Eloquent\Content\Content'
+        );
+        
+        /**
+         * Repositories
+         */
         $this->app->singleton(
             'Gzero\Repositories\Lang\LangRepository',
             'Gzero\Repositories\Lang\EloquentLangRepository'

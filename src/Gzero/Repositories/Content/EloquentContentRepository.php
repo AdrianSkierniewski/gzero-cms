@@ -1,7 +1,7 @@
 <?php namespace Gzero\Repositories\Content;
 
 use Gzero\EloquentBaseModel\Model\Collection;
-use Gzero\Models\Content\Content;
+use Gzero\Models\Content;
 use Gzero\Models\Lang;
 use Gzero\Repositories\AbstractRepository;
 use Gzero\Repositories\TreeRepositoryTrait;
@@ -17,6 +17,8 @@ use Gzero\Repositories\TreeRepositoryTrait;
  * @package    Gzero\Repositories\Content
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
+ *
+ * @method Content getById($id)
  */
 class EloquentContentRepository extends AbstractRepository implements ContentRepository {
 
@@ -177,9 +179,9 @@ class EloquentContentRepository extends AbstractRepository implements ContentRep
      */
     protected function beforeEagerLoad(Array &$relations)
     {
-        $relations['translations'] = function ($q) {
-            $q->onlyCurrent();
-        };
+//        $relations['translations'] = function ($q) {
+//            $q->onlyCurrent();
+//        };
     }
 
     //-----------------------------------------------------------------------------------------------

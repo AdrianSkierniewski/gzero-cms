@@ -1,7 +1,6 @@
-<?php namespace Gzero\Models\MenuLink;
+<?php namespace Gzero\Models\Eloquent\MenuLink;
 
 use Gzero\Models\Translatable;
-use Gzero\Models\TranslatableTrait;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -16,6 +15,8 @@ use Gzero\Models\TranslatableTrait;
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
 class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
+
+    const DIR_NAMESPACE = 'Gzero\Models\Eloquent';
 
     protected $fillable = array(
         'target',
@@ -55,4 +56,13 @@ class MenuLink extends \Gzero\EloquentTree\Model\Tree implements Translatable {
     //-----------------------------------------------------------------------------------------------
 
 
+    public function getCurrentTranslations()
+    {
+        // TODO: Implement getCurrentTranslations() method.
+    }
+
+    public function setCurrentTranslations()
+    {
+        // TODO: Implement setCurrentTranslations() method.
+    }
 }

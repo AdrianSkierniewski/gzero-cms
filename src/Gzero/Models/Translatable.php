@@ -15,11 +15,8 @@
 
 interface Translatable {
 
-    /**
-     * Represents content translations relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function translations();
+    public function getCurrentTranslations();
+
+    public function setCurrentTranslations();
 
 }

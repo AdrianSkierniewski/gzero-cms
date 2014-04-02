@@ -1,4 +1,6 @@
-<?php namespace Gzero\Models\Content;
+<?php namespace Gzero\Models\Eloquent\Tag;
+
+use Gzero\Models\Translatable;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -6,34 +8,55 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Class ContentType
+ * Class Tag
  *
- * @package    Gzero\Models\Content
+ * @package    Gzero\Models\Tag
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class ContentType extends \Eloquent {
+class Tag extends \Eloquent implements Translatable {
 
-    protected $guarded = array();
+    const DIR_NAMESPACE = 'Gzero\Models\Eloquent';
 
-    public static $rules = array();
+    protected $fillable = array(
+        'is_active'
+    );
 
     //-----------------------------------------------------------------------------------------------
     // START: Relations section
     //-----------------------------------------------------------------------------------------------
 
     /**
-     * Represents contents relation
+     * Represents tag translations relation
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function translations()
+    {
+        return $this->hasMany(__NAMESPACE__ . '\TagTranslation');
+    }
+
+    /**
+     * Represents contents relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function contents()
     {
-        return $this->hasMany('Gzero\Models\Content\Content');
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Content\Content')->withTimestamps();
     }
 
     //-----------------------------------------------------------------------------------------------
     // END: Relations section
     //-----------------------------------------------------------------------------------------------
 
+    public function getCurrentTranslations()
+    {
+        // TODO: Implement getCurrentTranslations() method.
+    }
+
+    public function setCurrentTranslations()
+    {
+        // TODO: Implement setCurrentTranslations() method.
+    }
 }

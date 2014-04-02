@@ -32,7 +32,7 @@ class TagTranslation extends AbstractTranslation {
      */
     public function tag()
     {
-        return $this->belongsTo('Gzero\Models\Tag\Tag');
+        return $this->belongsTo(__NAMESPACE__ . '\Tag');
     }
 
     //-----------------------------------------------------------------------------------------------

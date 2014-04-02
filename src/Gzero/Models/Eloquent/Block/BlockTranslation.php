@@ -1,6 +1,6 @@
-<?php namespace Gzero\Models\MenuLink;
+<?php namespace Gzero\Models\Eloquent\Block;
 
-use Gzero\Models\AbstractTranslation;
+use Gzero\Models\Eloquent\AbstractTranslation;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -8,35 +8,38 @@ use Gzero\Models\AbstractTranslation;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Class ContentTranslation
+ * Class BlockTranslation
  *
- * @package    Gzero\Models\Content
+ * @package    Gzero\Models\Block
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class MenuLinkTranslation extends AbstractTranslation {
+class BlockTranslation extends AbstractTranslation {
 
     protected $fillable = array(
         'title',
-        'url',
-        'alt',
-        'is_active'
+        'body',
     );
 
     public static $rules = array();
+
+    public function getBlockType()
+    {
+        return $this->block->type->name;
+    }
 
     //-----------------------------------------------------------------------------------------------
     // START: Relations section
     //-----------------------------------------------------------------------------------------------
 
     /**
-     * Represents menu link relation
+     * Represents block relation
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function menuLink()
+    public function block()
     {
-        return $this->belongsTo('Gzero\Models\MenuLink\MenuLink');
+        return $this->belongsTo(__NAMESPACE__ . '\Block');
     }
 
     //-----------------------------------------------------------------------------------------------

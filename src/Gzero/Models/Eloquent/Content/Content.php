@@ -1,8 +1,7 @@
-<?php namespace Gzero\Models\Content;
+<?php namespace Gzero\Models\Eloquent\Content;
 
-use Gzero\Models\Translatable;
+use Gzero\Models\Content as ContentInterface;
 use Gzero\Models\TranslatableTrait;
-use Gzero\Models\Uploadable;
 use Gzero\Models\UploadableTrait;
 use Gzero\Presenters\ContentPresenter;
 use Robbo\Presenter\PresentableInterface;
@@ -24,7 +23,14 @@ use Robbo\Presenter\PresentableInterface;
  * @method withEntity() withEntity($lang_code = NULL) Scope method - adds all entity joins
  * @method basicOrder() basicOrder() Scope method - adds basic order by to query
  */
-class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Uploadable, PresentableInterface {
+class Content extends \Gzero\EloquentTree\Model\Tree implements ContentInterface, PresentableInterface {
+
+    const DIR_NAMESPACE = 'Gzero\Models\Eloquent';
+
+    protected $with = [
+        'type',
+        'translations'
+    ];
 
     protected $fillable = array(
         'rating',
@@ -109,7 +115,18 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
      */
     public function type()
     {
-        return $this->belongsTo('Gzero\Models\Content\ContentType');
+        return $this->belongsTo(__NAMESPACE__ . '\ContentType');
+    }
+
+    /**
+     * Represents content current translations relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function translations()
+    {
+        return $this->hasMany(__NAMESPACE__ . '\ContentTranslation')
+            ->where('is_current', '=', 1);
     }
 
     /**
@@ -119,7 +136,7 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
      */
     public function thumb()
     {
-        return $this->belongsTo('Gzero\Models\Upload\Upload');
+        return $this->belongsTo(self::DIR_NAMESPACE . '\Upload\Upload');
     }
 
     /**
@@ -129,7 +146,7 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
      */
     public function menuLink()
     {
-        return $this->hasMany('Gzero\Models\MenuLink\MenuLink');
+        return $this->hasMany(self::DIR_NAMESPACE . '\MenuLink\MenuLink');
     }
 
     /**
@@ -139,7 +156,7 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
      */
     public function uploads()
     {
-        return $this->belongsToMany('Gzero\Models\Upload\Upload')->withTimestamps();
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Upload\Upload')->withTimestamps();
     }
 
     /**
@@ -149,22 +166,27 @@ class Content extends \Gzero\EloquentTree\Model\Tree implements Translatable, Up
      */
     public function tags()
     {
-        return $this->belongsToMany('Gzero\Models\Tag\Tag');
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Tag\Tag');
     }
 
-    /**
-     * Represents content translations relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function translations()
-    {
-        return $this->hasMany('Gzero\Models\Content\ContentTranslation');
-    }
 
     //-----------------------------------------------------------------------------------------------
     // END: Relations section
     //-----------------------------------------------------------------------------------------------
 
+    public function getCurrentTranslations()
+    {
+        // TODO: Implement getCurrentTranslations() method.
+    }
+
+    public function setCurrentTranslations()
+    {
+        // TODO: Implement setCurrentTranslations() method.
+    }
+
+    public function getUploads()
+    {
+
+    }
 }
 

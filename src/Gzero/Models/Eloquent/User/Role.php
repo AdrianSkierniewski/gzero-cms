@@ -1,4 +1,4 @@
-<?php namespace Gzero\Models;
+<?php namespace Gzero\Models\Eloquent\User;
 
 /**
  * This file is part of the GZERO CMS package.

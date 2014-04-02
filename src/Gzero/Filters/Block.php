@@ -1,7 +1,6 @@
 <?php namespace Gzero\Filters;
 
 use Gzero\BlockHandler;
-use Gzero\EloquentBaseModel\Model\Collection;
 use Gzero\Repositories\Lang\LangRepository;
 
 /**

@@ -1,7 +1,6 @@
-<?php namespace Gzero\Models\Upload;
+<?php namespace Gzero\Models\Eloquent\Upload;
 
 use Gzero\Models\Translatable;
-use Gzero\Models\TranslatableTrait;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -16,6 +15,8 @@ use Gzero\Models\TranslatableTrait;
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
 class Upload extends \Eloquent implements Translatable {
+
+    const DIR_NAMESPACE = 'Gzero\Models\Eloquent';
 
     protected $fillable = array(
         'name',
@@ -41,7 +42,19 @@ class Upload extends \Eloquent implements Translatable {
      */
     public function type()
     {
-        return $this->belongsTo('Gzero\Models\Upload\UploadType');
+        return $this->belongsTo(__NAMESPACE__ . '\UploadType');
+    }
+
+    /**
+     * Represents upload translations relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function translations()
+    {
+        return $this->hasMany(__NAMESPACE__ . '\UploadTranslation')
+            ->where('is_current', '=', 1);
+
     }
 
     /**
@@ -54,9 +67,9 @@ class Upload extends \Eloquent implements Translatable {
     public function contents($thumb = FALSE)
     {
         if ($thumb) {
-            return $this->hasMany('Gzero\Models\Content\Content', 'thumb_id');
+            return $this->hasMany(self::DIR_NAMESPACE . '\Content\Content', 'thumb_id');
         }
-        return $this->belongsToMany('Gzero\Models\Content\Content')->withTimestamps();
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Content\Content')->withTimestamps();
     }
 
     /**
@@ -66,7 +79,7 @@ class Upload extends \Eloquent implements Translatable {
      */
     public function blocks()
     {
-        return $this->belongsToMany('Gzero\Models\Block\Block')->withTimestamps();
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Block\Block')->withTimestamps();
     }
 
     /**
@@ -76,22 +89,20 @@ class Upload extends \Eloquent implements Translatable {
      */
     public function tags()
     {
-        return $this->belongsToMany('Gzero\Models\Tag\Tag');
-    }
-
-    /**
-     * Represents upload translations relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function translations()
-    {
-        return $this->hasMany('Gzero\Models\Upload\UploadTranslation');
-
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Tag\Tag');
     }
 
     //-----------------------------------------------------------------------------------------------
     // END: Relations section
     //-----------------------------------------------------------------------------------------------
 
+    public function getCurrentTranslations()
+    {
+        // TODO: Implement getCurrentTranslations() method.
+    }
+
+    public function setCurrentTranslations()
+    {
+        // TODO: Implement setCurrentTranslations() method.
+    }
 }

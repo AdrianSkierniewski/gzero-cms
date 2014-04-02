@@ -6,12 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Class Permission
+ * Interface Content
  *
  * @package    Gzero\Models
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class Permission extends \Eloquent {
+interface Content extends Translatable, Uploadable {
 
 } 

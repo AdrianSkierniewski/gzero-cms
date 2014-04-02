@@ -19,9 +19,6 @@ class EloquentLangRepository implements LangRepository {
 
     protected $cache;
     protected $lang;
-    /**
-     * @var array|\Gzero\EloquentBaseModel\Model\Collection|static[]
-     */
     protected $langs;
 
     public function __construct(Lang $lang)
@@ -35,21 +32,33 @@ class EloquentLangRepository implements LangRepository {
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getByCode($code)
     {
         return $this->langs->findByAttribute('code', $code);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAll()
     {
         return $this->lang->getAll();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCurrent()
     {
         return $this->getByCode(\App::getLocale());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAllEnabled()
     {
         return $this->langs->filter(

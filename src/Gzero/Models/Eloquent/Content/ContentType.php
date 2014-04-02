@@ -1,6 +1,4 @@
-<?php namespace Gzero\Models\Block;
-
-use Gzero\Models\AbstractTranslation;
+<?php namespace Gzero\Models\Eloquent\Content;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -8,40 +6,21 @@ use Gzero\Models\AbstractTranslation;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * Class BlockTranslation
+ * Class ContentType
  *
- * @package    Gzero\Models\Block
+ * @package    Gzero\Models\Content
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class BlockTranslation extends AbstractTranslation {
+class ContentType extends \Eloquent {
 
-    protected $fillable = array(
-        'title',
-        'body',
-    );
+    protected $guarded = array();
 
     public static $rules = array();
-
-    public function getBlockType()
-    {
-        return $this->block->type->name;
-    }
 
     //-----------------------------------------------------------------------------------------------
     // START: Relations section
     //-----------------------------------------------------------------------------------------------
-
-    /**
-     * Represents block relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function block()
-    {
-        return $this->belongsTo('Gzero\Models\Block\Block');
-    }
-
     //-----------------------------------------------------------------------------------------------
     // END: Relations section
     //-----------------------------------------------------------------------------------------------

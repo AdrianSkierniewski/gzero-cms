@@ -1,6 +1,6 @@
-<?php namespace Gzero\Models\Content;
+<?php namespace Gzero\Models\Eloquent\Content;
 
-use Gzero\Models\AbstractTranslation;
+use Gzero\Models\Eloquent\AbstractTranslation;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -39,7 +39,7 @@ class ContentTranslation extends AbstractTranslation {
      */
     public function content()
     {
-        return $this->belongsTo('Gzero\Models\Content\Content');
+        return $this->belongsTo(__NAMESPACE__ . '\Content');
     }
 
     //-----------------------------------------------------------------------------------------------

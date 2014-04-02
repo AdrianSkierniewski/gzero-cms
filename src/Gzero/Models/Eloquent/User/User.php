@@ -1,4 +1,4 @@
-<?php namespace Gzero\Models;
+<?php namespace Gzero\Models\Eloquent\User;
 
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
@@ -51,12 +51,12 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
     public function roles()
     {
-        return $this->belongsToMany('Gzero\Models\Role');
+        return $this->belongsToMany(__NAMESPACE__ . '\Role');
     }
 
     public function permissions()
     {
-        return $this->hasMany('Gzero\Models\Permission');
+        return $this->hasMany(__NAMESPACE__ . '\Permission');
     }
 
     public function hasRole($key)

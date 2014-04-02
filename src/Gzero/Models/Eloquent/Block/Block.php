@@ -1,9 +1,7 @@
-<?php namespace Gzero\Models\Block;
+<?php namespace Gzero\Models\Eloquent\Block;
 
 use Gzero\Models\Translatable;
-use Gzero\Models\TranslatableTrait;
 use Gzero\Models\Uploadable;
-use Gzero\Models\UploadableTrait;
 use Gzero\Presenters\BlockPresenter;
 use Robbo\Presenter\PresentableInterface;
 use Robbo\Presenter\Robbo;
@@ -21,6 +19,8 @@ use Robbo\Presenter\Robbo;
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
 class Block extends \Eloquent implements Translatable, Uploadable, PresentableInterface {
+
+    const DIR_NAMESPACE = 'Gzero\Models\Eloquent';
 
     protected $fillable = array(
         'is_active'
@@ -47,17 +47,7 @@ class Block extends \Eloquent implements Translatable, Uploadable, PresentableIn
      */
     public function type()
     {
-        return $this->belongsTo('Gzero\Models\Block\BlockType');
-    }
-
-    /**
-     * Represents uploads relation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function uploads()
-    {
-        return $this->belongsToMany('Gzero\Models\Upload\Upload')->withTimestamps();
+        return $this->belongsTo(__NAMESPACE__ . '\BlockType');
     }
 
     /**
@@ -67,11 +57,31 @@ class Block extends \Eloquent implements Translatable, Uploadable, PresentableIn
      */
     public function translations()
     {
-        return $this->hasMany('Gzero\Models\Block\BlockTranslation');
+        return $this->hasMany(__NAMESPACE__ . '\BlockTranslation')
+            ->where('is_current', '=', 1);
+    }
+
+    /**
+     * Represents uploads relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function getUploads()
+    {
+        return $this->belongsToMany(self::DIR_NAMESPACE . '\Upload\Upload')->withTimestamps();
     }
 
     //-----------------------------------------------------------------------------------------------
     // END: Relations section
     //-----------------------------------------------------------------------------------------------
 
+    public function getCurrentTranslations()
+    {
+        // TODO: Implement getCurrentTranslations() method.
+    }
+
+    public function setCurrentTranslations()
+    {
+        // TODO: Implement setCurrentTranslations() method.
+    }
 }
